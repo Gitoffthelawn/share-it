@@ -1,0 +1,43 @@
+@function color($type,$opacity:1) {
+  @if $opacity == 1 { @return rgb(var(--color-#{$type})); }
+  @else { @return rgba(var(--color-#{$type}),$opacity); }
+}
+
+body {
+  background: color(base);
+  color: color(main);
+
+  @media (prefers-color-scheme: light) {
+    --color-theme: 51, 103, 214;
+    --color-base: 255,255,255;
+    --color-main: 32, 33, 36;
+  }
+  @media (prefers-color-scheme: dark) {
+    --color-theme: 138, 180, 248;
+    --color-base: 42, 42, 42;
+    --color-main: 255,255,255;
+  }
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#app {
+  margin: 0;
+  padding: 0;
+  width: 320px;
+  height: 560px;
+  line-height: 1.5;
+  font-size: 14px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Noto Sans JP", "Noto Sans CJK JP", Robot, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-smoothing: antialiased;
+  font-feature-settings : "pkna" 1;
+  font-kerning: normal;
+  hanging-punctuation: allow-end;
+  letter-spacing: 0.02em;
+  -webkit-text-size-adjust: 100%;
+}

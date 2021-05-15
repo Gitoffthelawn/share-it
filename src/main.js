@@ -1,5 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './index.css'
+import store from "./store";
+import mixin from "./mixin";
 
-createApp(App).mount('#app')
+import VButton from "./components/VButton.vue";
+import './index.scss'
+
+const app = createApp(App);
+
+app.use(store);
+app.mixin(mixin);
+app.component("VButton", VButton);
+app.mount("#app");
