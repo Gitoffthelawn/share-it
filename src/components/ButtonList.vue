@@ -1,20 +1,19 @@
 <template>
   <ul>
-    <li v-for="button in enableButtons" :key="button">
-      <component :is="button"></component>
-    </li>
-  </ul>
-
-  <h2>{{ $store.state.isEn ? 'disable buttons' : '無効なボタン' }}</h2>
-  <ul>
-    <li v-for="button in disableButtons" :key="button">
-      <component :is="button"></component>
+    <li v-for="button in buttons" :key="button.component">
+      <component :is="button.component"></component>
     </li>
   </ul>
 
   <footer>
-    <button @click="copyClipboard('aaabaaaaa')">
+    <button @click="$store.commit('toggleMode')" v-if="!$store.state.editMode">
+      <img src="/img/setting.svg" alt="icon">
       {{ $store.state.isEn ? 'Manage Buttons' : '設定' }}
+    </button>
+
+    <button @click="$store.commit('toggleMode')" v-if="$store.state.editMode" class="complete">
+      <img src="/img/complete.svg" alt="icon">
+      {{ $store.state.isEn ? 'Complete' : '完了' }}
     </button>
   </footer>
 
@@ -31,25 +30,19 @@ export default {
     }
   },
   computed: {
-    enableButtons() {
-      return this.$store.state.options.enableButtons;
-    },
-    disableButtons() {
-      return this.$store.state.options.disableButtons;
+    buttons() {
+      return this.$store.state.options.buttons;
     },
   },
   methods:{
     save() {
       chrome.storage.sync.set({
         options: {
-          enableButtons: [
+          buttons: [
             "Twitter",
             "Twitter",
             "Twitter",
             "Twitter"
-          ],
-          disableButtons: [
-            "Twitter",
           ],
         }
       });
@@ -66,3 +59,39 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+@use "../index.scss" as *;
+
+ul {
+  margin-top: 4px;
+}
+footer {
+  position: fixed;
+  width: 100vw;
+  left: 0; bottom: 0;
+  background: color(base);
+  border-top: 1px solid color(main,.1);
+
+  button {
+    width: 100%;
+    height: 48px;
+    background: none;
+    border: none;
+    color: color(main,.6);
+    text-indent: -.5em;
+    transition: .1s ease-out;
+    &:hover {
+      background: color(main,.1);
+    }
+
+    &.complete {
+      background: color(theme,.9);
+      color: #fff;
+      &:hover {
+        background: color(theme,1);
+      }
+    }
+  }
+}
+</style>

@@ -1,0 +1,10 @@
+<svg id="b298c890-7332-42ff-8fc5-1bba465b3723" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .a93dbb58-a9ff-453d-a355-8599724bdf95 {
+        fill: #1a1a1a;
+      }
+    </style>
+  </defs>
+  <path id="f41f5d33-3dee-4a38-b4af-c8f9c7f72aac" data-name="48x30 Solid" class="a93dbb58-a9ff-453d-a355-8599724bdf95" d="M22.5,19.5H1.5A1.37,1.37,0,0,1,0,18V6A1.37,1.37,0,0,1,1.5,4.5h21A1.37,1.37,0,0,1,24,6V18A1.37,1.37,0,0,1,22.5,19.5ZM6,16V11.5l2.25,3,2.25-3V16H13V8H10.5L8.25,11.3,6,8H3.5v8Zm15.5-4H19V8H16.5v4H14l3.75,4Z"/>
+</svg>

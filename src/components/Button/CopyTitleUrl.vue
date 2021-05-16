@@ -3,16 +3,16 @@
     img="/img/copy.svg"
     @click="copy()"
   >
-    {{ $store.state.isEn ? 'Copy title' : 'タイトルをコピー' }}
+    {{ $store.state.isEn ? 'Copy title & URL' : 'タイトルとURLをコピー' }}
   </VButton>
 </template>
 
 <script>
 export default {
-  name: 'CopyTitle',
+  name: 'CopyTitleUrl',
   methods:{
     copy() {
-      navigator.clipboard.writeText(this.$store.state.tab.title);
+      navigator.clipboard.writeText(this.$store.state.tab.title + ' ' + this.$store.state.tab.url);
       this.copyNotification(this.$store.state.isEn);
     }
   }

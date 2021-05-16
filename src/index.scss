@@ -24,12 +24,32 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+button {
+  padding: 0 25px;
+  letter-spacing: .05em;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  cursor: pointer;
+  transition: .1s ease-out;
+  &:hover {
+    background: color(main,.1);
+  }
+
+  img {
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
 
 #app {
   margin: 0;
-  padding: 0;
+  padding: 0 0 64px;
   width: 320px;
   height: 560px;
+  overflow: scroll;
   line-height: 1.5;
   font-size: 14px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
