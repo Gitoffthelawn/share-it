@@ -1,0 +1,18 @@
+export default [
+  { componentName:"Twitter",  enable: false },
+  { componentName:"Facebook",  enable: true },
+  { componentName:"Pocket",  enable: true },
+  { componentName:"LINE",  enable: true },
+  { componentName:"Pinterest",  enable: true },
+  { componentName:"LinkedIn",  enable: true },
+  { componentName:"Hatebu",  enable: true },
+  { componentName:"Gmail",  enable: true },
+  { componentName:"Tumblr",  enable: true },
+  { componentName:"Note",  enable: true },
+  { componentName:"CopyTitle",  enable: true },
+  { componentName:"CopyTitleUrl",  enable: true },
+  { componentName:"CopyLinkAsHtml",  enable: true },
+  { componentName:"CopyLinkAsMd",  enable: true },
+  { componentName:"CopyLinkAsRichText",  enable: true },
+  { componentName:"QR",  enable: true },
+]

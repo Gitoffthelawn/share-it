@@ -4,25 +4,25 @@ export default createStore({
   state: {
     isEn: true,
     tab: {},
-    editMode: true,
+    editMode: false,
     options: {
       buttons: [
-        { component:"Twitter",  enable: true },
-        { component:"Facebook",  enable: true },
-        { component:"Pocket",  enable: true },
-        { component:"LINE",  enable: true },
-        { component:"Pinterest",  enable: true },
-        { component:"LinkedIn",  enable: true },
-        { component:"Hatebu",  enable: true },
-        { component:"Gmail",  enable: true },
-        { component:"Tumblr",  enable: true },
-        { component:"Note",  enable: true },
-        { component:"CopyTitle",  enable: true },
-        { component:"CopyTitleUrl",  enable: true },
-        { component:"CopyLinkAsHtml",  enable: true },
-        { component:"CopyLinkAsMd",  enable: true },
-        { component:"CopyLinkAsRichText",  enable: true },
-        { component:"QR",  enable: true },
+        { componentName:"Twitter",  enable: false },
+        { componentName:"Facebook",  enable: true },
+        { componentName:"Pocket",  enable: true },
+        { componentName:"LINE",  enable: true },
+        { componentName:"Pinterest",  enable: true },
+        { componentName:"LinkedIn",  enable: true },
+        { componentName:"Hatebu",  enable: true },
+        { componentName:"Gmail",  enable: true },
+        { componentName:"Tumblr",  enable: true },
+        { componentName:"Note",  enable: true },
+        { componentName:"CopyTitle",  enable: true },
+        { componentName:"CopyTitleUrl",  enable: true },
+        { componentName:"CopyLinkAsHtml",  enable: true },
+        { componentName:"CopyLinkAsMd",  enable: true },
+        { componentName:"CopyLinkAsRichText",  enable: true },
+        { componentName:"QR",  enable: true },
       ],
     }
   },
@@ -35,9 +35,6 @@ export default createStore({
     },
     setTabInfo(state, tab) {
       state.tab = { ...tab };
-    },
-    setOptions(state, options) {
-      state.options = { ...options };
     },
   },
   actions: {},

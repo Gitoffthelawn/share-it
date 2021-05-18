@@ -34,7 +34,7 @@ button {
 
   cursor: pointer;
   transition: .1s ease-out;
-  &:hover {
+  &:hover:not(:disabled) {
     background: color(main,.1);
   }
 

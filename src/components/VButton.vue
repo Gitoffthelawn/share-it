@@ -1,9 +1,10 @@
 <template>
-  <button>
-    <!-- <img src="/img/drag.svg" alt="drag"> -->
+  <button
+    :disabled="$store.state.editMode ? 'disabled' : false"
+    :class="{ edit: $store.state.editMode }"
+  >
     <img :src="img" alt="icon">
     <slot></slot>
-    <!-- <input type="checkbox" name="" id=""> -->
   </button>
 </template>
 
@@ -21,8 +22,7 @@ export default {
 
 button {
   width: 100%;
-  height: 42px;
-  margin-top: 4px;
+  height: 40px;
   border: none;
   background: none;
   color: color(main,.9);
@@ -32,6 +32,14 @@ button {
     vertical-align: text-bottom;
     width: 16px;
     height: 16px;
+    transition: .1s ease-out;
+
+  }
+  &.edit {
+    pointer-events: none;
+    img {
+      margin-left: 24px;
+    }
   }
  }
 </style>
