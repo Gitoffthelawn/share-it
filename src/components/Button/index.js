@@ -8,12 +8,14 @@ import Hatebu from './Hatebu.vue';
 import Gmail from './Gmail.vue';
 import Tumblr from './Tumblr.vue';
 import Note from './Note.vue';
+import WaybackMachine from './WaybackMachine.vue';
 import CopyTitle from './CopyTitle.vue';
 import CopyTitleUrl from './CopyTitleUrl.vue';
 import CopyLinkAsHtml from './CopyLinkAsHtml.vue';
 import CopyLinkAsMd from './CopyLinkAsMd.vue';
 import CopyLinkAsRichText from './CopyLinkAsRichText.vue';
 import QR from './QR.vue';
+import Print from './Print.vue';
 
 export default {
   Twitter,
@@ -26,10 +28,12 @@ export default {
   Gmail,
   Tumblr,
   Note,
+  WaybackMachine,
   CopyTitle,
   CopyTitleUrl,
   CopyLinkAsHtml,
   CopyLinkAsMd,
   CopyLinkAsRichText,
   QR,
+  Print,
 }

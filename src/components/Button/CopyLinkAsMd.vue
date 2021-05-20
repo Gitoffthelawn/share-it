@@ -3,7 +3,7 @@
     img="/img/md.svg"
     @click="copy()"
   >
-    {{ $store.state.isEn ? 'Copy link as Markdown' : 'Markdown形式でリンクをコピー' }}
+    {{ $store.state.isEn ? 'Copy link as Markdown' : 'Markdownでリンクをコピー' }}
   </VButton>
 </template>
 

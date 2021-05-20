@@ -6,7 +6,7 @@
   "default_locale": "en",
   "homepage_url": "https://psephopaiktes.github.io/share-it/",
   "description": "__MSG_extDescription__",
-  "permissions": ["storage","tabs","notifications"],
+  "permissions": ["storage","tabs","notifications","activeTab","scripting"],
   "action": {
     "default_title": "Share this page",
     "default_popup": "index.html"

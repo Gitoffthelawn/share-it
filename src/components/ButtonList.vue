@@ -28,7 +28,7 @@
   <footer>
     <button @click="$store.commit('toggleMode')" v-if="!$store.state.editMode">
       <img src="/img/setting.svg" alt="icon">
-      {{ $store.state.isEn ? 'Manage Buttons' : '設定' }}
+      {{ $store.state.isEn ? 'Manage Buttons' : 'ボタン設定' }}
     </button>
 
     <button @click="save()" v-if="$store.state.editMode" class="complete">
@@ -89,17 +89,25 @@ export default {
           buttons: [...this.buttons],
         }
       });
-    }
-  },
-  beforeCreate () {
 
+      // TODO: ここにキャッシュ削除処理
+      // Chrome.options.buttonsの中にもう消したいCompoentnがあるかもしれない。
+    }
   },
   created() {
     if (process.env.NODE_ENV == 'production') {
       chrome.storage.sync.get( 'options', data  => {
 
-        if( data.options.buttons ) {
-          this.buttons = data.options.buttons;
+        if( data.options && data.options.buttons ) {
+          this.buttons = [...data.options.buttons];
+
+          // DefaultListがUpdateで増えていたら追加する
+          const NewButtons = DefaultButtonList.filter( defaultButton =>
+            !data.options.buttons.some( chromeButton =>
+              chromeButton.componentName == defaultButton.componentName
+            )
+          );
+          this.buttons.push(...NewButtons);
         } else {
           this.buttons = [...DefaultButtonList];
         }
@@ -117,13 +125,14 @@ export default {
 
 .buttonList {
   margin-top: 8px;
+  list-style: none;
   li {
     position: relative;
     cursor: grab;
     background: color(base);
     margin-top: 4px;
     &.disable {
-      opacity: .6;
+      opacity: .5;
     }
     > img {
       margin-top: 8px;
@@ -142,7 +151,7 @@ export default {
     bottom: 14px;
     width: 28px;
     height: 12px;
-    background: rgba(#9AA0A0,.4);
+    background: rgba(#9AA0A0,.6);
     border-radius: 10px;
     cursor: pointer;
     &::before {

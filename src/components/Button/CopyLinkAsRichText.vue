@@ -3,7 +3,7 @@
     img="/img/richtext.svg"
     @click="copy()"
   >
-    {{ $store.state.isEn ? 'Copy link as Rich Text' : 'リッチテキスト形式でリンクをコピー' }}
+    {{ $store.state.isEn ? 'Copy link as Rich Text' : 'リッチテキストでリンクをコピー' }}
   </VButton>
 </template>
 
