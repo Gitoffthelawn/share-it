@@ -16,5 +16,6 @@ export default [
   { componentName:"CopyLinkAsMd",  enable: false },
   { componentName:"CopyLinkAsRichText",  enable: true },
   { componentName:"QR",  enable: true },
+  { componentName:"AmazonShorter",  enable: true },
   { componentName:"Print",  enable: false },
 ]

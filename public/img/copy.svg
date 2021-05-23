@@ -1,10 +1,1 @@
-<svg id="ff73e4c2-8dfc-4bc1-b156-cf122378703c" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <defs>
-    <style>
-      .a309de56-b9fc-42ac-82d2-67ea55224143 {
-        fill: #5f6369;
-      }
-    </style>
-  </defs>
-  <path class="a309de56-b9fc-42ac-82d2-67ea55224143" d="M16.09,2H3.36V16.55H5.18V3.82H16.09Zm4.55,3.64H7V22H20.64ZM18.82,20.18h-10V7.45h10Z"/>
-</svg>
+<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="m16.09 2h-12.73v14.55h1.82v-12.73h10.91zm4.55 3.64h-13.64v16.36h13.64zm-1.82 14.54h-10v-12.73h10z" fill="#5f6369"/></svg>

@@ -7,7 +7,7 @@ export default {
         message: isEn ? "Copied." : "コピーしました",
         silent: true,
         iconUrl: "../icon128.png"
-      });
+      }, ()=> {window.close()} );
     }
   }
 }

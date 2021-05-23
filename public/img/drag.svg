@@ -1,13 +1,1 @@
-<svg id="aa68ea0f-bacf-47b5-9a0e-50236bef9c12" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <defs>
-    <style>
-      .e50c09db-124f-4afc-9c1d-f3270bb560b1 {
-        fill: #787d85;
-      }
-    </style>
-  </defs>
-  <g>
-    <rect class="e50c09db-124f-4afc-9c1d-f3270bb560b1" x="6" y="8" width="12" height="2"/>
-    <rect class="e50c09db-124f-4afc-9c1d-f3270bb560b1" x="6" y="14" width="12" height="2"/>
-  </g>
-</svg>
+<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><g fill="#787d85"><path d="m6 8h12v2h-12z"/><path d="m6 14h12v2h-12z"/></g></svg>

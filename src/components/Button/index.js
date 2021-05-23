@@ -16,6 +16,7 @@ import CopyLinkAsMd from './CopyLinkAsMd.vue';
 import CopyLinkAsRichText from './CopyLinkAsRichText.vue';
 import QR from './QR.vue';
 import Print from './Print.vue';
+import AmazonShorter from './AmazonShorter.vue';
 
 export default {
   Twitter,
@@ -36,4 +37,5 @@ export default {
   CopyLinkAsRichText,
   QR,
   Print,
+  AmazonShorter,
 }
