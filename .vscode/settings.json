@@ -1,0 +1,7 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "Vue.volar",
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
+}

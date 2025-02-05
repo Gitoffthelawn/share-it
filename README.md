@@ -1,4 +1,4 @@
 # share-it
-Chrome extension for Share web page.
+Web Extension for Share web page.
 
-https://chrome.google.com/webstore/detail/share-it/kmfmfcdigkgfhmnopjfdnaikhjkmmplm
+Chrome: https://chrome.google.com/webstore/detail/share-it/kmfmfcdigkgfhmnopjfdnaikhjkmmplm
