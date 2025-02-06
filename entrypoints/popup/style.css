@@ -1,7 +1,4 @@
 :root {
-	background: rgb(var(--color-base));
-	color: rgb(var(--color-main));
-
 	@media (prefers-color-scheme: light) {
 		--color-theme: 51 103 214;
 		--color-base: 255 255 255;
@@ -12,6 +9,9 @@
 		--color-base: 42 42 42;
 		--color-main: 255 255 255;
 	}
+
+	background: rgb(var(--color-base));
+	color: rgb(var(--color-main));
 }
 
 *,
@@ -32,9 +32,10 @@ button {
 	cursor: pointer;
 	transition: .1s ease-out;
 	outline: none;
+	background: none;
 	&:hover:not(:disabled),
 	&:focus {
-		background: rgb(var(--color-main) / 0.1);
+		background: rgb(var(--color-main) / 0.08);
 	}
 
 	img {

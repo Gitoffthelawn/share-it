@@ -19,7 +19,6 @@ button {
   width: 100%;
   height: 40px;
   border: none;
-  background: none;
   color: rgb(var(--color-main) / .9);
   text-align: left;
 
@@ -27,7 +26,6 @@ button {
     vertical-align: text-bottom;
     width: 16px;
     height: 16px;
-
   }
 
   &.edit {

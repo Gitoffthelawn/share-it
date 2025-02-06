@@ -6,12 +6,20 @@
         @dragstart="dragstart(index)" @dragover="dragover($event)" @dragleave="dragleave($event)"
         @drop="ondrop(index, $event)" :class="{ disable: !button.enable }">
         <img v-if="$store.state.editMode" class="handle" src="/img/drag.svg" alt="drag">
-        <component :is="button.componentName"></component>
+        <component :is="button.componentName" :tabindex="index"></component>
         <input v-if="$store.state.editMode" type="checkbox" :checked="button.enable"
           @change="changeSwitch(index, $event)">
       </li>
     </template>
   </ul>
+
+  <!-- TODO REQUEST.md つくる -->
+  <a v-if="$store.state.isEn" href="https://github.com/psephopaiktes/share-it" id="request" target="_blank">
+    Request <img src="/img/send.svg" alt="icon">
+  </a>
+  <a v-else href="https://github.com/psephopaiktes/share-it" id="request" target="_blank">
+    リクエスト <img src="/img/send.svg" alt="icon">
+  </a>
 
   <footer>
     <button @click="$store.commit('toggleMode')" v-if="!$store.state.editMode">
@@ -150,6 +158,11 @@ export default {
     background: rgb(154 160 160 / 0.6);
     border-radius: 10px;
     cursor: pointer;
+    outline: none;
+
+    &:focus {
+      box-shadow: 0 0 0 6px rgb(var(--color-main) / .1);
+    }
 
     &::before {
       content: "";
@@ -181,6 +194,29 @@ export default {
   }
 }
 
+#request {
+  display: flex;
+  gap: .8em;
+  margin: 32px 16px 0;
+  justify-content: center;
+  line-height: 32px;
+  background: rgb(var(--color-theme));
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+
+  &:hover,
+  &:focus {
+    filter: brightness(1.1);
+  }
+
+  img {
+    opacity: .8;
+    width: 1.2em;
+    aspect-ratio: 1;
+  }
+}
+
 footer {
   position: fixed;
   width: 100vw;
@@ -192,15 +228,10 @@ footer {
   button {
     width: 100%;
     height: 48px;
-    background: none;
     border: none;
     color: rgb(var(--color-main) / .6);
     text-indent: -.5em;
     transition: .1s ease-out;
-
-    &:hover {
-      background: rgb(var(--color-main) / .1);
-    }
 
     &.complete {
       background: rgb(var(--color-theme) / .9);

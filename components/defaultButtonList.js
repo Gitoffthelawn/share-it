@@ -10,6 +10,7 @@ export default [
   { componentName: "LinkedIn", enable: false },
   { componentName: "Hatebu", enable: true },
   { componentName: "Gmail", enable: false },
+  { componentName: "Email", enable: false },
   { componentName: "Tumblr", enable: false },
   { componentName: "Note", enable: true },
   { componentName: "Feedly", enable: false },

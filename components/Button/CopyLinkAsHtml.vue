@@ -9,7 +9,7 @@ export default {
   name: 'CopyLinkAsHtml',
   methods: {
     copy() {
-      navigator.clipboard.writeText(`<a href="${this.$store.state.tab.url}" target="_blank" rel="noopener">${this.$store.state.tab.title}</a>`);
+      navigator.clipboard.writeText(`<a href="${this.$store.state.tab.url}" target="_blank">${this.$store.state.tab.title}</a>`);
 
       browser.notifications.create({
         type: "basic",

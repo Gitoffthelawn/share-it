@@ -35,10 +35,40 @@ export default {
       });
     } else {
       // sample for develop
-      this.title = "きっとまだ知らない、Alfredのオススメ設定・使い方 | WEBA";
-      this.url = "https://hira.page/blog/alfred-technique";
+      this.title = "Example site";
+      this.url = "https://example.com";
       this.favIconUrl = "https://hira.page/img/meta/favicon.svg";
     }
+
+    // 上下キーでフォーカスを移動
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+
+      const focusableButtons = Array.from(
+        document.querySelectorAll("button, a")
+      ).filter(el => {
+        const style = getComputedStyle(el);
+        return style.display !== "none" && style.visibility !== "hidden";
+      });
+
+      if (!focusableButtons.includes(document.activeElement) && e.key === "ArrowDown") {
+        e.preventDefault();
+        focusableButtons[0].focus();
+        return;
+      }
+
+      const currentIndex = focusableButtons.indexOf(document.activeElement);
+      if (currentIndex === -1) return;
+
+      e.preventDefault(); // デフォルトのスクロールなどを防ぐ
+
+      const nextIndex =
+        e.key === "ArrowDown"
+          ? (currentIndex + 1) % focusableButtons.length
+          : (currentIndex - 1 + focusableButtons.length) % focusableButtons.length;
+
+      focusableButtons[nextIndex].focus();
+    });
   },
 };
 </script>

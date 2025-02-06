@@ -9,6 +9,7 @@ import Pinterest from "./Pinterest.vue";
 import LinkedIn from "./LinkedIn.vue";
 import Hatebu from "./Hatebu.vue";
 import Gmail from "./Gmail.vue";
+import Email from "./Email.vue";
 import Tumblr from "./Tumblr.vue";
 import Note from "./Note.vue";
 import Feedly from "./Feedly.vue";
@@ -34,6 +35,7 @@ export default {
 	Pinterest,
 	LinkedIn,
 	Hatebu,
+	Email,
 	Gmail,
 	Tumblr,
 	Note,
