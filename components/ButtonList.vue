@@ -13,12 +13,12 @@
     </template>
   </ul>
 
-  <!-- TODO REQUEST.md つくる -->
-  <a v-if="$store.state.isEn" href="https://github.com/psephopaiktes/share-it" id="request" target="_blank">
-    Request <img src="/img/send.svg" alt="icon">
+  <a v-if="$store.state.isEn" href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.md" id="request"
+    target="_blank">
+    Request new button <img src="/img/send.svg" alt="icon">
   </a>
-  <a v-else href="https://github.com/psephopaiktes/share-it" id="request" target="_blank">
-    リクエスト <img src="/img/send.svg" alt="icon">
+  <a v-else href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.ja.md" id="request" target="_blank">
+    ボタンをリクエスト <img src="/img/send.svg" alt="icon">
   </a>
 
   <footer>

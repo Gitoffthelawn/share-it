@@ -1,19 +1,28 @@
-# Contribution Guide
+# share-it Contribution Guide
 
-このOSSへのコントリビュート方法、リクエスト方法についてのガイドです。
+English | [日本語](CONTRIBUTING.ja.md)
 
-## 機能をリクエストしたい
-- 増やして欲しい機能のボタンがある方は、ぜひお気軽に[GitHub Issue](https://github.com/psephopaiktes/share-it/issues)を立てるか、[わたしのXアカウント](https://x.com/psephopaiktes)にリプライしてください。
-- ただし、対応できるかどうかは**そのサービスが共有リンクをサポートしているかどうか**次第です。例えば、[]()などはサポートされていないため、実現できません。
-- また、個々のボタン自体は比較的かんたんに実装されています。[こちらのソースコード](TODO:X)を見て、簡単そうだと感じた方はぜひPullRequestを送ってください！
+Thank you for visiting. This is a guide on how to contribute to and request features for this Web Extension.
 
-## PullRequestで機能を提案したい
+## Requesting Features
+- If you have a button feature you would like to see added, please feel free to add a [GitHub Issue](https://github.com/psephopaiktes/share-it/issues/new) or reply to [my X account](https://x.com/psephopaiktes).
+- However, whether it can be implemented depends on **whether the service supports posting from URL queries**. For example, [Notion Web Clipper](https://www.notion.com/web-clipper) does not support new posts from URLs, so it cannot be implemented.
+- Also, individual buttons are relatively easy to implement. If you find it simple after looking at [this source code](https://github.com/psephopaiktes/share-it/blob/main/components/Button/X.vue), please feel free to send a Pull Request!
 
-### 開発環境のセットアップ
+## Proposing Features via Pull Request
+
+Please fork the repository and submit a Pull Request following the general procedure.
+
+### Setting Up the Development Environment
+
+A node environment is required.
 
 ```zsh
 npm i
 npm start
 ```
 
-### ボタンを追加したい場合
+### Adding a Button
+1. Add the new button component to `/components/Button/`.
+2. Add two lines of `import` and `export` to the list in `/components/Button/index.js`.
+3. Add a line to `/components/defaultButtonList.js`. The `enable` flag indicates whether it is enabled by default. Generally, set it to `false` for services that are expected to have fewer users.
