@@ -63,7 +63,7 @@ export default {
       // e.preventDefault();
       e.target.style.borderTop = "";
       console.log(`${this.draggingIndex}→${index}`);
-      if (index == this.draggingIndex) {
+      if (index === this.draggingIndex) {
         return;
       }
 
