@@ -1,11 +1,13 @@
 <script setup>
+import $store from "@/entrypoints/popup/store";
+
 defineProps({
   img: String
 });
 </script>
 
 <template>
-  <button :disabled="$store.state.editMode ? 'disabled' : false" :class="{ edit: $store.state.editMode }">
+  <button :disabled="$store.editing ? 'disabled' : false" :class="{ edit: $store.editing }">
     <img :src="img" alt="icon">
     <slot></slot>
   </button>

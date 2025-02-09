@@ -5,10 +5,9 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const post = () => {
-  window.open(`https://mstdn.jp/share?text=${store.state.tab.title}%20${store.state.tab.url}`);
+  window.open(`https://mstdn.jp/share?text=${$store.tab.title}%20${$store.tab.url}`);
 };
 </script>

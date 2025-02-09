@@ -1,12 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useStore } from 'vuex';
 import ButtonList from "@/components/ButtonList.vue";
+import $store from "./store";
 
-const store = useStore();
-const title = ref("");
-const url = ref("");
-const favIconUrl = ref("");
+const title = ref("Example site");
+const url = ref("https://example.com");
+const favIconUrl = ref("https://hira.page/img/meta/favicon.svg");
 
 const getCurrentTab = async () => {
   const queryOptions = { active: true, currentWindow: true };
@@ -44,26 +43,18 @@ const handleKeyNavigation = (e) => {
 };
 
 onMounted(() => {
-  if (process.env.NODE_ENV === "production") {
-    if (browser.i18n.getUILanguage().includes("ja")) {
-      store.commit("setIsEn", false);
-    }
-
-    getCurrentTab().then((tab) => {
-      store.commit("setTabInfo", tab);
-
-      title.value = tab.title || "";
-      url.value = tab.url || "";
-      favIconUrl.value = tab.favIconUrl || "";
-    });
-  } else {
-    // sample for develop
-    title.value = "Example site";
-    url.value = "https://example.com";
-    favIconUrl.value = "https://hira.page/img/meta/favicon.svg";
+  if (browser.i18n.getUILanguage().includes("ja")) {
+    $store.isEn = false;
   }
 
-  // 上下キーでフォーカスを移動
+  getCurrentTab().then((tab) => {
+    $store.tab = tab;
+
+    title.value = tab.title || "";
+    url.value = tab.url || "";
+    favIconUrl.value = tab.favIconUrl || "";
+  });
+
   document.addEventListener("keydown", handleKeyNavigation);
 });
 </script>

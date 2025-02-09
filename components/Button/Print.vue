@@ -1,16 +1,15 @@
 <template>
   <VButton img="/img/print.svg" @click="print()">
-    {{ $store.state.isEn ? 'Print' : '印刷' }}
+    {{ $store.isEn ? 'Print' : '印刷' }}
   </VButton>
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const print = () => {
   browser.scripting.executeScript({
-    target: { tabId: store.state.tab.id },
+    target: { tabId: $store.tab.id },
     func: () => { window.print(); },
   });
 };

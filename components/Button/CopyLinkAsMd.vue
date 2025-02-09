@@ -1,21 +1,20 @@
 <template>
   <VButton img="/img/md.svg" @click="copy()">
-    {{ $store.state.isEn ? 'Copy link as Markdown' : 'Markdownでリンクをコピー' }}
+    {{ $store.isEn ? 'Copy link as Markdown' : 'Markdownでリンクをコピー' }}
   </VButton>
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const copy = () => {
   navigator.clipboard.writeText(
-    `[${store.state.tab.title}](${store.state.tab.url})`,
+    `[${$store.tab.title}](${$store.tab.url})`,
   );
 
   browser.notifications.create({
     type: "basic",
-    title: "Share it",
+    title: "Share-it",
     message: store.state.isEn ? "Copied." : "コピーしました",
     silent: true,
     iconUrl: "/icon/128.png"

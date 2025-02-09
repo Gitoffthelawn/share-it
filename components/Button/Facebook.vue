@@ -5,10 +5,9 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const fb = () => {
-  window.open(`https://www.facebook.com/sharer/sharer.php?u=${store.state.tab.url}`);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${$store.tab.url}`);
 };
 </script>

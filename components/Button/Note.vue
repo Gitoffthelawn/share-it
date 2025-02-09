@@ -5,10 +5,9 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const note = () => {
-  window.open(`https://note.com/intent/post?url=${store.state.tab.url}`);
+  window.open(`https://note.com/intent/post?url=${$store.tab.url}`);
 };
 </script>

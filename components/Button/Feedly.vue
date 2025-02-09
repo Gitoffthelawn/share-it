@@ -1,14 +1,13 @@
 <template>
   <VButton img="/img/feedly.svg" @click="feedly()">
-    {{ $store.state.isEn ? 'Search RSS on Feedly' : 'FeedlyでRSSを探す' }}
+    {{ $store.isEn ? 'Search RSS on Feedly' : 'FeedlyでRSSを探す' }}
   </VButton>
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const feedly = () => {
-  window.open(`https://feedly.com/i/discover/sources/search/feed/${store.state.tab.url}`);
+  window.open(`https://feedly.com/i/discover/sources/search/feed/${$store.tab.url}`);
 };
 </script>

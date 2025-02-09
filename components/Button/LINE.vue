@@ -5,10 +5,9 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const line = () => {
-  window.open(`https://line.me/R/msg/text/?${store.state.tab.title}%0D%0A${store.state.tab.url}`);
+  window.open(`https://line.me/R/msg/text/?${$store.tab.title}%0D%0A${$store.tab.url}`);
 };
 </script>

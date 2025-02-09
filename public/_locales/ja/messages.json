@@ -1,11 +1,11 @@
 {
-  "locale":{
-    "message": "ja"
-  },
-  "extName": {
-    "message": "Share it"
-  },
-  "extDescription": {
-    "message": "開いているWebページを、さまざまなサービス・形式で共有・コピーできます。"
-  }
+	"locale": {
+		"message": "ja"
+	},
+	"extName": {
+		"message": "Share-it"
+	},
+	"extDescription": {
+		"message": "開いているWebページを、さまざまなサービス・形式で共有・コピーできます。"
+	}
 }

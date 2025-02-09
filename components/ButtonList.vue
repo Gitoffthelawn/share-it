@@ -1,63 +1,43 @@
-<template>
-
-  <ul class="buttonList">
-    <template v-for="(button, index) in buttons" :key="button.componentName">
-      <li v-if="button.enable || $store.state.editMode" :draggable="$store.state.editMode ? true : false"
-        @dragstart="dragstart(index)" @dragover="dragover($event)" @dragleave="dragleave($event)"
-        @drop="ondrop(index, $event)" :class="{ disable: !button.enable }">
-        <img v-if="$store.state.editMode" class="handle" src="/img/drag.svg" alt="drag">
-        <component :is="button.componentName" :tabindex="index"></component>
-        <input v-if="$store.state.editMode" type="checkbox" :checked="button.enable"
-          @change="changeSwitch(index, $event)">
-      </li>
-    </template>
-  </ul>
-
-  <a v-if="$store.state.isEn" href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.md" id="request"
-    target="_blank">
-    Request new button <img src="/img/send.svg" alt="icon">
-  </a>
-  <a v-else href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.ja.md" id="request" target="_blank">
-    ボタンをリクエスト <img src="/img/send.svg" alt="icon">
-  </a>
-
-  <footer>
-    <button @click="$store.commit('toggleMode')" v-if="!$store.state.editMode">
-      <img src="/img/setting.svg" alt="icon">
-      {{ $store.state.isEn ? 'Manage Buttons' : 'ボタン設定' }}
-    </button>
-
-    <button @click="save()" v-if="$store.state.editMode" class="complete">
-      <img src="/img/complete.svg" alt="icon">
-      {{ $store.state.isEn ? 'Complete' : '完了' }}
-    </button>
-  </footer>
-
-</template>
-
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useStore } from 'vuex';
 import Buttons from "./Button";
-import DefaultButtonList from "./defaultButtonList.js";
 
-const store = useStore();
+// import.meta.glob('./Button/*.vue', { eager: true });
+import DefaultButtonList from "./defaultButtonList";
+import $store from "@/entrypoints/popup/store";
+
 const buttons = ref([]);
 const draggingIndex = ref(0);
+
+onMounted(() => {
+  browser.storage.sync.get("options", (data) => {
+    buttons.value = data.options?.buttons
+      ? DefaultButtonList.filter(defaultButton =>
+        data.options.buttons.some(
+          browserButton => browserButton.componentName === defaultButton.componentName
+        )
+      ).concat(
+        data.options.buttons.filter(
+          browserButton =>
+            !DefaultButtonList.some(
+              defaultButton => defaultButton.componentName === browserButton.componentName
+            )
+        )
+      )
+      : [...DefaultButtonList];
+  });
+});
 
 const dragstart = (index) => {
   draggingIndex.value = index;
 };
-
 const dragover = (e) => {
   e.preventDefault();
   e.target.style.borderTop = "4px solid rgb(var(--color-theme) / 0.2)";
 };
-
 const dragleave = (e) => {
   e.target.style.borderTop = "";
 };
-
 const ondrop = (index, e) => {
   e.target.style.borderTop = "";
   console.log(`${draggingIndex.value}→${index}`);
@@ -66,59 +46,63 @@ const ondrop = (index, e) => {
   }
 
   const moveValue = { ...buttons.value[draggingIndex.value] };
-  buttons.value.splice(draggingIndex.value, 1); // Delete Dragging
+  buttons.value.splice(draggingIndex.value, 1);
 
   draggingIndex.value < index
     ? buttons.value.splice(index - 1, 0, moveValue)
     : buttons.value.splice(index, 0, moveValue);
 };
-
 const changeSwitch = (index, e) => {
   buttons.value[index].enable = e.target.checked;
 };
-
 const save = () => {
-  store.commit("toggleMode");
+  $store.editing = !$store.editing;
   browser.storage.sync.set({
     options: {
       buttons: [...buttons.value],
     },
   });
 };
-
-onMounted(() => {
-  if (process.env.NODE_ENV === "production") {
-    browser.storage.sync.get("options", (data) => {
-      if (data.options?.buttons) {
-        buttons.value = [...data.options.buttons];
-
-        // DefaultListがUpdateで増えていたら追加する
-        const NewButtons = DefaultButtonList.filter(
-          (defaultButton) =>
-            !data.options.buttons.some(
-              (browserButton) =>
-                browserButton.componentName === defaultButton.componentName,
-            ),
-        );
-        buttons.value.push(...NewButtons);
-
-        // UserのOptionの中にあるボタンがDefaultListにない場合は削除する
-        buttons.value = buttons.value.filter((button) =>
-          DefaultButtonList.some(
-            (defaultButton) =>
-              defaultButton.componentName === button.componentName,
-          ),
-        );
-      } else {
-        buttons.value = [...DefaultButtonList];
-      }
-    });
-  } else {
-    buttons.value = [...DefaultButtonList];
-  }
-});
 </script>
 
+<template>
+
+  <component :is="buttons[0].componentName" />
+  <ul class="buttonList">
+    <template v-for="(button, index) in buttons" :key="button.componentName">
+      <li v-if="button.enable || $store.editing" :draggable="$store.editing" @dragstart="dragstart(index)"
+        @dragover="dragover($event)" @dragleave="dragleave($event)" @drop="ondrop(index, $event)"
+        :class="{ disable: !button.enable }">
+        <img v-if="$store.editing" class="handle" src="/img/drag.svg" alt="drag">
+        <!-- TODO: ここをVbuttonにする?とか -->
+        <component :is="button.componentName" :tabindex="index" />
+        <input v-if="$store.editing" type="checkbox" :checked="button.enable" @change="changeSwitch(index, $event)">
+      </li>
+    </template>
+  </ul>
+
+  <a v-if="$store.isEn" href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.md" id="request"
+    target="_blank">
+    Request new button <img src="/img/send.svg" alt="icon">
+  </a>
+  <a v-else href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.ja.md" id="request" target="_blank">
+    ボタンをリクエスト <img src="/img/send.svg" alt="icon">
+  </a>
+
+  <footer>
+    <button @click="save()" v-if="$store.editing" class="complete">
+      <img src="/img/complete.svg" alt="icon">
+      {{ $store.isEn ? 'Complete' : '完了' }}
+    </button>
+    <!-- TODO v-eles -->
+    <button @click="$store.editing = !$store.editing" v-if="!$store.editing">
+      <img src="/img/setting.svg" alt="icon">
+      {{ $store.isEn ? 'Manage Buttons' : 'ボタン設定' }}
+    </button>
+
+  </footer>
+
+</template>
 <style scoped>
 .buttonList {
   margin-top: 8px;

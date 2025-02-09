@@ -1,4 +1,4 @@
-# share-it Contribution Guide
+# Share-it Contribution Guide
 
 English | [日本語](CONTRIBUTING.ja.md)
 

@@ -5,11 +5,10 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const search = () => {
-  window.open(`https://web.archive.org/web/*/${store.state.tab.url}`);
+  window.open(`https://web.archive.org/web/*/${$store.tab.url}`);
 };
 </script>
 

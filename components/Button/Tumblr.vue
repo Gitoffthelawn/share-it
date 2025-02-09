@@ -5,12 +5,11 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const post = () => {
   window.open(
-    `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${store.state.tab.url}&title=${store.state.tab.title}`,
+    `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${$store.tab.url}&title=${$store.tab.title}`,
   );
 };
 </script>

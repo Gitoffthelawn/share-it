@@ -5,10 +5,9 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const save = () => {
-  window.open(`https://getpocket.com/save?url=${store.state.tab.url}`);
+  window.open(`https://getpocket.com/save?url=${$store.tab.url}`);
 };
 </script>

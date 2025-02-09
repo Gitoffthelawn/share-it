@@ -1,3 +1,6 @@
+// const components = import.meta.glob('./*.vue', { eager: true });
+// export default components;
+
 import X from "./X.vue";
 import Bluesky from "./Bluesky.vue";
 import Threads from "./Threads.vue";

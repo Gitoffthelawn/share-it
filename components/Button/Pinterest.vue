@@ -5,10 +5,9 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const pin = () => {
-  window.open(`https://pinterest.com/pin/create/button/?url=${store.state.tab.url}&description=${store.state.tab.title}`);
+  window.open(`https://pinterest.com/pin/create/button/?url=${$store.tab.url}&description=${$store.tab.title}`);
 };
 </script>

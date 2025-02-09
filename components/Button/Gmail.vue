@@ -5,10 +5,9 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex';
+import $store from "@/entrypoints/popup/store";
 
-const store = useStore();
 const mailto = () => {
-  window.open(`https://gmail.google.com/gmail?fs=1&tf=1&view=cm&su=${store.state.tab.title}&body=${store.state.tab.url}`);
+  window.open(`https://gmail.google.com/gmail?fs=1&tf=1&view=cm&su=${$store.tab.title}&body=${$store.tab.url}`);
 };
 </script>
