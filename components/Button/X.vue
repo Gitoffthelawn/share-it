@@ -4,13 +4,11 @@
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'X',
-  methods: {
-    post() {
-      window.open(`https://x.com/intent/post?text=${this.$store.state.tab.title}&url=${this.$store.state.tab.url}`);
-    }
-  }
-}
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const post = () => {
+  window.open(`https://x.com/intent/post?text=${store.state.tab.title}&url=${store.state.tab.url}`);
+};
 </script>

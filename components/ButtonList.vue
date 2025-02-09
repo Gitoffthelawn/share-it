@@ -35,90 +35,88 @@
 
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
 import Buttons from "./Button";
 import DefaultButtonList from "./defaultButtonList.js";
 
-export default {
-  name: "ButtonList",
-  components: Buttons,
-  data() {
-    return {
-      buttons: [],
-      draggingIndex: 0,
-    };
-  },
-  methods: {
-    dragstart(index) {
-      this.draggingIndex = index;
-    },
-    dragover(e) {
-      e.preventDefault();
-      e.target.style.borderTop = "4px solid rgb(var(--color-theme) / 0.2)";
-    },
-    dragleave(e) {
-      e.target.style.borderTop = "";
-    },
-    ondrop(index, e) {
-      // e.preventDefault();
-      e.target.style.borderTop = "";
-      console.log(`${this.draggingIndex}→${index}`);
-      if (index === this.draggingIndex) {
-        return;
-      }
+const store = useStore();
+const buttons = ref([]);
+const draggingIndex = ref(0);
 
-      const moveValue = { ...this.buttons[this.draggingIndex] };
-      this.buttons.splice(this.draggingIndex, 1); // Delete Dragging
-
-      this.draggingIndex < index
-        ? this.buttons.splice(index - 1, 0, moveValue)
-        : this.buttons.splice(index, 0, moveValue);
-    },
-
-    changeSwitch(index, e) {
-      this.buttons[index].enable = e.target.checked;
-    },
-    save() {
-      this.$store.commit("toggleMode");
-      browser.storage.sync.set({
-        options: {
-          buttons: [...this.buttons],
-        },
-      });
-    },
-  },
-  created() {
-    if (process.env.NODE_ENV === "production") {
-      browser.storage.sync.get("options", (data) => {
-        if (data.options?.buttons) {
-          this.buttons = [...data.options.buttons];
-
-          // DefaultListがUpdateで増えていたら追加する
-          const NewButtons = DefaultButtonList.filter(
-            (defaultButton) =>
-              !data.options.buttons.some(
-                (browserButton) =>
-                  browserButton.componentName === defaultButton.componentName,
-              ),
-          );
-          this.buttons.push(...NewButtons);
-
-          // UserのOptionの中にあるボタンがDefaultListにない場合は削除する
-          this.buttons = this.buttons.filter((button) =>
-            DefaultButtonList.some(
-              (defaultButton) =>
-                defaultButton.componentName === button.componentName,
-            ),
-          );
-        } else {
-          this.buttons = [...DefaultButtonList];
-        }
-      });
-    } else {
-      this.buttons = [...DefaultButtonList];
-    }
-  },
+const dragstart = (index) => {
+  draggingIndex.value = index;
 };
+
+const dragover = (e) => {
+  e.preventDefault();
+  e.target.style.borderTop = "4px solid rgb(var(--color-theme) / 0.2)";
+};
+
+const dragleave = (e) => {
+  e.target.style.borderTop = "";
+};
+
+const ondrop = (index, e) => {
+  e.target.style.borderTop = "";
+  console.log(`${draggingIndex.value}→${index}`);
+  if (index === draggingIndex.value) {
+    return;
+  }
+
+  const moveValue = { ...buttons.value[draggingIndex.value] };
+  buttons.value.splice(draggingIndex.value, 1); // Delete Dragging
+
+  draggingIndex.value < index
+    ? buttons.value.splice(index - 1, 0, moveValue)
+    : buttons.value.splice(index, 0, moveValue);
+};
+
+const changeSwitch = (index, e) => {
+  buttons.value[index].enable = e.target.checked;
+};
+
+const save = () => {
+  store.commit("toggleMode");
+  browser.storage.sync.set({
+    options: {
+      buttons: [...buttons.value],
+    },
+  });
+};
+
+onMounted(() => {
+  if (process.env.NODE_ENV === "production") {
+    browser.storage.sync.get("options", (data) => {
+      if (data.options?.buttons) {
+        buttons.value = [...data.options.buttons];
+
+        // DefaultListがUpdateで増えていたら追加する
+        const NewButtons = DefaultButtonList.filter(
+          (defaultButton) =>
+            !data.options.buttons.some(
+              (browserButton) =>
+                browserButton.componentName === defaultButton.componentName,
+            ),
+        );
+        buttons.value.push(...NewButtons);
+
+        // UserのOptionの中にあるボタンがDefaultListにない場合は削除する
+        buttons.value = buttons.value.filter((button) =>
+          DefaultButtonList.some(
+            (defaultButton) =>
+              defaultButton.componentName === button.componentName,
+          ),
+        );
+      } else {
+        buttons.value = [...DefaultButtonList];
+      }
+    });
+  } else {
+    buttons.value = [...DefaultButtonList];
+  }
+});
 </script>
 
 <style scoped>

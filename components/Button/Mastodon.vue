@@ -4,13 +4,11 @@
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'Mastodon',
-  methods: {
-    post() {
-      window.open(`https://mstdn.jp/share?text=${this.$store.state.tab.title}%20${this.$store.state.tab.url}`);
-    }
-  }
-}
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const post = () => {
+  window.open(`https://mstdn.jp/share?text=${store.state.tab.title}%20${store.state.tab.url}`);
+};
 </script>

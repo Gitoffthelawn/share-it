@@ -1,20 +1,15 @@
 <template>
-  <VButton
-    img="/img/archive.svg"
-    @click="search()"
-  >
+  <VButton img="/img/archive.svg" @click="search()">
     Wayback Machine
   </VButton>
 </template>
 
-<script>
-export default {
-	name: "WaybackMachine",
-	methods: {
-		search() {
-			window.open(`https://web.archive.org/web/*/${this.$store.state.tab.url}`);
-		},
-	},
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const search = () => {
+  window.open(`https://web.archive.org/web/*/${store.state.tab.url}`);
 };
 </script>
 

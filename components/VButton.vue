@@ -1,10 +1,7 @@
-<script>
-export default {
-  name: "VButton",
-  props: {
-    img: String,
-  },
-};
+<script setup>
+defineProps({
+  img: String
+});
 </script>
 
 <template>

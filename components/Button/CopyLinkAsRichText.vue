@@ -4,33 +4,29 @@
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'CopyLinkAsRichText',
-  methods: {
-    copy() {
-      const str = `<a href="${this.$store.state.tab.url}">${this.$store.state.tab.title}</a>`;
+<script setup>
+import { useStore } from 'vuex';
 
-      const listener = (e) => {
-        e.clipboardData.setData("text/html", str);
-        e.clipboardData.setData("text/plain", str);
-        e.preventDefault();
-      }
+const store = useStore();
+const copy = () => {
+  const str = `<a href="${store.state.tab.url}">${store.state.tab.title}</a>`;
 
-      document.addEventListener("copy", listener);
-      document.execCommand("copy");
-      document.removeEventListener("copy", listener);
+  const listener = (e) => {
+    e.clipboardData.setData("text/html", str);
+    e.clipboardData.setData("text/plain", str);
+    e.preventDefault();
+  };
 
+  document.addEventListener("copy", listener);
+  document.execCommand("copy");
+  document.removeEventListener("copy", listener);
 
-      browser.notifications.create({
-        type: "basic",
-        title: "Share it",
-        message: this.$store.state.isEn ? "Copied." : "コピーしました",
-        silent: true,
-        iconUrl: "/icon/128.png"
-      }, () => { window.close() });
-
-    }
-  }
-}
+  browser.notifications.create({
+    type: "basic",
+    title: "Share it",
+    message: store.state.isEn ? "Copied." : "コピーしました",
+    silent: true,
+    iconUrl: "/icon/128.png"
+  }, () => { window.close() });
+};
 </script>

@@ -1,19 +1,14 @@
 <template>
-  <VButton
-    img="/img/facebook.svg"
-    @click="fb()"
-  >
+  <VButton img="/img/facebook.svg" @click="fb()">
     Facebook
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'Facebook',
-  methods:{
-    fb() {
-      window.open(`https://www.facebook.com/sharer/sharer.php?u=${this.$store.state.tab.url}`);
-    }
-  }
-}
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const fb = () => {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${store.state.tab.url}`);
+};
 </script>

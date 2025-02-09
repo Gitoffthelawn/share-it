@@ -4,13 +4,11 @@
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'Email',
-  methods: {
-    mailto() {
-      window.open(`mailto:info@sample.com?subject=${this.$store.state.tab.title}&body=${this.$store.state.tab.url}`);
-    }
-  }
-}
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const mailto = () => {
+  window.open(`mailto:info@sample.com?subject=${store.state.tab.title}&body=${store.state.tab.url}`);
+};
 </script>

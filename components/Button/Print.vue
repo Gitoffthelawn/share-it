@@ -4,16 +4,14 @@
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'Print',
-  methods: {
-    print() {
-      browser.scripting.executeScript({
-        target: { tabId: this.$store.state.tab.id },
-        func: () => { window.print(); },
-      });
-    }
-  }
-}
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const print = () => {
+  browser.scripting.executeScript({
+    target: { tabId: store.state.tab.id },
+    func: () => { window.print(); },
+  });
+};
 </script>

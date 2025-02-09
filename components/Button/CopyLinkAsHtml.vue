@@ -4,21 +4,19 @@
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'CopyLinkAsHtml',
-  methods: {
-    copy() {
-      navigator.clipboard.writeText(`<a href="${this.$store.state.tab.url}" target="_blank">${this.$store.state.tab.title}</a>`);
+<script setup>
+import { useStore } from 'vuex';
 
-      browser.notifications.create({
-        type: "basic",
-        title: "Share it",
-        message: this.$store.state.isEn ? "Copied." : "コピーしました",
-        silent: true,
-        iconUrl: "/icon/128.png"
-      }, () => { window.close() });
-    }
-  }
-}
+const store = useStore();
+const copy = () => {
+  navigator.clipboard.writeText(`<a href="${store.state.tab.url}" target="_blank">${store.state.tab.title}</a>`);
+
+  browser.notifications.create({
+    type: "basic",
+    title: "Share it",
+    message: store.state.isEn ? "Copied." : "コピーしました",
+    silent: true,
+    iconUrl: "/icon/128.png"
+  }, () => { window.close() });
+};
 </script>

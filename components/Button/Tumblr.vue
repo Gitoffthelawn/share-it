@@ -1,22 +1,17 @@
 <template>
-  <VButton
-    img="/img/tumblr.svg"
-    @click="post()"
-  >
+  <VButton img="/img/tumblr.svg" @click="post()">
     Tumblr
   </VButton>
 </template>
 
-<script>
-export default {
-	name: "Tumblr",
-	methods: {
-		post() {
-			window.open(
-				`https://www.tumblr.com/widgets/share/tool?canonicalUrl=${this.$store.state.tab.url}&title=${this.$store.state.tab.title}`,
-			);
-		},
-	},
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const post = () => {
+  window.open(
+    `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${store.state.tab.url}&title=${store.state.tab.title}`,
+  );
 };
 </script>
 

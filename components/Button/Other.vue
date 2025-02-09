@@ -4,22 +4,20 @@
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'Other',
-  methods: {
-    post() {
-      if (!navigator.share) {
-        alert(this.$store.state.isEn ? "This browser is not supported" : "このブラウザではサポートされていません");
-        window.close();
-        return;
-      }
+<script setup>
+import { useStore } from 'vuex';
 
-      const title = this.$store.state.tab.title;
-      const url = this.$store.state.tab.url;
-
-      navigator.share({ title, url, });
-    }
+const store = useStore();
+const post = () => {
+  if (!navigator.share) {
+    alert(store.state.isEn ? "This browser is not supported" : "このブラウザではサポートされていません");
+    window.close();
+    return;
   }
-}
+
+  const title = store.state.tab.title;
+  const url = store.state.tab.url;
+
+  navigator.share({ title, url });
+};
 </script>

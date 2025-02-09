@@ -1,19 +1,14 @@
 <template>
-  <VButton
-    img="/img/note.svg"
-    @click="note()"
-  >
+  <VButton img="/img/note.svg" @click="note()">
     note
   </VButton>
 </template>
 
-<script>
-export default {
-  name: 'Note',
-  methods:{
-    note() {
-      window.open(`https://note.com/intent/post?url=${this.$store.state.tab.url}`);
-    }
-  }
-}
+<script setup>
+import { useStore } from 'vuex';
+
+const store = useStore();
+const note = () => {
+  window.open(`https://note.com/intent/post?url=${store.state.tab.url}`);
+};
 </script>
