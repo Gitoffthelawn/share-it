@@ -23,6 +23,5 @@ npm start
 ```
 
 ### Adding a Button
-1. Add the new button component to `/components/Button/`.
-2. Add two lines of `import` and `export` to the list in `/components/Button/index.js`.
-3. Add a line to `/components/defaultButtonList.js`. The `enable` flag indicates whether it is enabled by default. Generally, set it to `false` for services that are expected to have fewer users.
+0. Add the new button component to `/components/Button/`.
+0. Add a line to `/components/defaultButtonList.js`. The `enable` flag indicates whether it is enabled by default. Generally, set it to `false` for services that are expected to have fewer users.

@@ -1,9 +1,9 @@
 export default [
-	{ componentName: "Facebook", enable: true },
 	{ componentName: "X", enable: true },
 	{ componentName: "Bluesky", enable: false },
 	{ componentName: "Threads", enable: false },
 	{ componentName: "Mastodon", enable: false },
+	{ componentName: "Facebook", enable: true },
 	{ componentName: "Pocket", enable: true },
 	{ componentName: "Pinterest", enable: false },
 	{ componentName: "LinkedIn", enable: false },

@@ -1,31 +1,50 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import Buttons from "./Button";
 
-// import.meta.glob('./Button/*.vue', { eager: true });
+const modules = import.meta.glob("./Button/*.vue", { eager: true });
+const ButtonComponents = Object.fromEntries(
+  Object.entries(modules).map(([path, module]) => {
+    const name = path.match(/\.\/Button\/(.*)\.vue$/)[1];
+    return [name, module.default];
+  }),
+);
+
 import DefaultButtonList from "./defaultButtonList";
 import $store from "@/entrypoints/popup/store";
 
 const buttons = ref([]);
 const draggingIndex = ref(0);
 
-onMounted(() => {
-  browser.storage.sync.get("options", (data) => {
-    buttons.value = data.options?.buttons
-      ? DefaultButtonList.filter(defaultButton =>
-        data.options.buttons.some(
-          browserButton => browserButton.componentName === defaultButton.componentName
-        )
-      ).concat(
-        data.options.buttons.filter(
-          browserButton =>
-            !DefaultButtonList.some(
-              defaultButton => defaultButton.componentName === browserButton.componentName
-            )
-        )
-      )
-      : [...DefaultButtonList];
-  });
+onMounted(async () => {
+  try {
+    const data = await browser.storage.sync.get("options");
+    buttons.value = data.options?.buttons || [...DefaultButtonList];
+    console.log('Loaded options:', buttons.value);
+    // いったんこれでうまくいった。あとは↓
+    // DefaultListがUpdateで増えていたら追加する
+    // UserのOptionの中にあるボタンがDefaultListにない場合は削除する
+    // https://github.com/psephopaiktes/share-it/blob/main/components/ButtonList.vue
+  } catch (e) {
+    console.error("Failed to retrieve options from storage:", error);
+    buttons.value = [...DefaultButtonList];
+  }
+
+  // browser.storage.sync.get("options", (data) => {
+  //   buttons.value = data.options?.buttons
+  //     ? DefaultButtonList.filter(defaultButton =>
+  //       data.options.buttons.some(
+  //         browserButton => browserButton.componentName === defaultButton.componentName
+  //       )
+  //     ).concat(
+  //       data.options.buttons.filter(
+  //         browserButton =>
+  //           !DefaultButtonList.some(
+  //             defaultButton => defaultButton.componentName === browserButton.componentName
+  //           )
+  //       )
+  //     )
+  //     : [...DefaultButtonList];
+  // });
 });
 
 const dragstart = (index) => {
@@ -40,10 +59,7 @@ const dragleave = (e) => {
 };
 const ondrop = (index, e) => {
   e.target.style.borderTop = "";
-  console.log(`${draggingIndex.value}→${index}`);
-  if (index === draggingIndex.value) {
-    return;
-  }
+  if (index === draggingIndex.value) return;
 
   const moveValue = { ...buttons.value[draggingIndex.value] };
   buttons.value.splice(draggingIndex.value, 1);
@@ -66,16 +82,13 @@ const save = () => {
 </script>
 
 <template>
-
-  <component :is="buttons[0].componentName" />
   <ul class="buttonList">
     <template v-for="(button, index) in buttons" :key="button.componentName">
       <li v-if="button.enable || $store.editing" :draggable="$store.editing" @dragstart="dragstart(index)"
         @dragover="dragover($event)" @dragleave="dragleave($event)" @drop="ondrop(index, $event)"
         :class="{ disable: !button.enable }">
         <img v-if="$store.editing" class="handle" src="/img/drag.svg" alt="drag">
-        <!-- TODO: ここをVbuttonにする?とか -->
-        <component :is="button.componentName" :tabindex="index" />
+        <component :is="ButtonComponents[button.componentName]" :tabindex="index" />
         <input v-if="$store.editing" type="checkbox" :checked="button.enable" @change="changeSwitch(index, $event)">
       </li>
     </template>

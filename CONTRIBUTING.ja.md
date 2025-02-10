@@ -24,5 +24,4 @@ npm start
 
 ### ボタンを追加する
 0. `/components/Button/` に追加ボタンコンポーネントを追加します。
-0. `/components/Button/index.ts` のリストに、`import`と`export`を2行追加します。
 0. `/components/defaultButtonList.ts` に行を追加します。`enable`はデフォルトで有効になっているかのフラグです。一般的に、ユーザーが少ないと思われるサービスの場合は`false`にしてください。
