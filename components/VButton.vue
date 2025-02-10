@@ -7,7 +7,7 @@ defineProps({
 </script>
 
 <template>
-  <button :disabled="$store.editing ? 'disabled' : false" :class="{ edit: $store.editing }">
+  <button :disabled="$store.editing" :class="{ edit: $store.editing }">
     <img :src="img" alt="icon">
     <slot></slot>
   </button>

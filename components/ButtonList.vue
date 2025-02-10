@@ -20,31 +20,32 @@ onMounted(async () => {
     const data = await browser.storage.sync.get("options");
     buttons.value = data.options?.buttons || [...DefaultButtonList];
     console.log('Loaded options:', buttons.value);
-    // いったんこれでうまくいった。あとは↓
-    // DefaultListがUpdateで増えていたら追加する
-    // UserのOptionの中にあるボタンがDefaultListにない場合は削除する
-    // https://github.com/psephopaiktes/share-it/blob/main/components/ButtonList.vue
+
+    if (data.options?.buttons) {
+      const userButtons = data.options.buttons;
+
+      // Updateで追加されたButton要素を末尾に追加する
+      const newButtons = DefaultButtonList.filter(
+        defaultButton => !userButtons.some(
+          browserButton => browserButton.componentName === defaultButton.componentName
+        )
+      );
+
+      buttons.value = userButtons.concat(newButtons).filter(
+        // Updateで削除されたButton要素を削除する
+        button => DefaultButtonList.some(
+          defaultButton => defaultButton.componentName === button.componentName
+        )
+      );
+    } else {
+      buttons.value = [...DefaultButtonList];
+    }
+
   } catch (e) {
     console.error("Failed to retrieve options from storage:", error);
     buttons.value = [...DefaultButtonList];
   }
 
-  // browser.storage.sync.get("options", (data) => {
-  //   buttons.value = data.options?.buttons
-  //     ? DefaultButtonList.filter(defaultButton =>
-  //       data.options.buttons.some(
-  //         browserButton => browserButton.componentName === defaultButton.componentName
-  //       )
-  //     ).concat(
-  //       data.options.buttons.filter(
-  //         browserButton =>
-  //           !DefaultButtonList.some(
-  //             defaultButton => defaultButton.componentName === browserButton.componentName
-  //           )
-  //       )
-  //     )
-  //     : [...DefaultButtonList];
-  // });
 });
 
 const dragstart = (index) => {
@@ -103,14 +104,13 @@ const save = () => {
   </a>
 
   <footer>
-    <button @click="save()" v-if="$store.editing" class="complete">
-      <img src="/img/complete.svg" alt="icon">
-      {{ $store.isEn ? 'Complete' : '完了' }}
-    </button>
-    <!-- TODO v-eles -->
-    <button @click="$store.editing = !$store.editing" v-if="!$store.editing">
+    <button v-if="!$store.editing" @click="$store.editing = !$store.editing">
       <img src="/img/setting.svg" alt="icon">
       {{ $store.isEn ? 'Manage Buttons' : 'ボタン設定' }}
+    </button>
+    <button v-else @click="save()" class="complete">
+      <img src="/img/complete.svg" alt="icon">
+      {{ $store.isEn ? 'Complete' : '完了' }}
     </button>
 
   </footer>
