@@ -6,6 +6,7 @@ export default [
 	{ componentName: "Facebook", enable: true },
 	{ componentName: "Pocket", enable: true },
 	{ componentName: "Pinterest", enable: false },
+	{ componentName: "Blogger", enable: false },
 	{ componentName: "LinkedIn", enable: false },
 	{ componentName: "Gmail", enable: true },
 	{ componentName: "Email", enable: false },

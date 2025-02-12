@@ -7,7 +7,11 @@
 <script setup>
 import $store from "@/entrypoints/popup/store";
 
+const params = new URLSearchParams({
+  text: `${$store.tab.title} ${$store.tab.url}`,
+}).toString();
+
 const post = () => {
-  window.open(`https://bsky.app/intent/compose?text=${$store.tab.title}%20${$store.tab.url}`);
+  window.open(`https://bsky.app/intent/compose?${params}`);
 };
 </script>

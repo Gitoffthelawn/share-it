@@ -7,10 +7,13 @@
 <script setup>
 import $store from "@/entrypoints/popup/store";
 
+const params = new URLSearchParams({
+  canonicalUrl: $store.tab.url,
+  title: $store.tab.title,
+}).toString();
+
 const post = () => {
-  window.open(
-    `https://www.tumblr.com/widgets/share/tool?canonicalUrl=${$store.tab.url}&title=${$store.tab.title}`,
-  );
+  window.open(`https://www.tumblr.com/widgets/share/tool?${params}`);
 };
 </script>
 

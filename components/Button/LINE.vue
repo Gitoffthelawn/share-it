@@ -7,7 +7,12 @@
 <script setup>
 import $store from "@/entrypoints/popup/store";
 
+const params = new URLSearchParams({
+  text: $store.tab.title,
+  url: $store.tab.url,
+}).toString();
+
 const line = () => {
-  window.open(`https://line.me/R/msg/text/?${$store.tab.title}%0D%0A${$store.tab.url}`);
+  window.open(`https://social-plugins.line.me/lineit/share?${params}`);
 };
 </script>

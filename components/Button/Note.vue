@@ -7,7 +7,11 @@
 <script setup>
 import $store from "@/entrypoints/popup/store";
 
+const params = new URLSearchParams({
+  url: $store.tab.url,
+}).toString();
+
 const note = () => {
-  window.open(`https://note.com/intent/post?url=${$store.tab.url}`);
+  window.open(`https://note.com/intent/post?${params}`);
 };
 </script>

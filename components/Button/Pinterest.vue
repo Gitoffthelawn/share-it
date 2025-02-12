@@ -7,7 +7,12 @@
 <script setup>
 import $store from "@/entrypoints/popup/store";
 
+const params = new URLSearchParams({
+  description: $store.tab.title,
+  url: $store.tab.url,
+}).toString();
+
 const pin = () => {
-  window.open(`https://pinterest.com/pin/create/button/?url=${$store.tab.url}&description=${$store.tab.title}`);
+  window.open(`https://pinterest.com/pin/create/button/?${params}`);
 };
 </script>

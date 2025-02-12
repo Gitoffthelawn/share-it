@@ -1,6 +1,6 @@
 <template>
-  <VButton img="/img/mastodon.svg" @click="post()">
-    Mastodon
+  <VButton img="/img/blogger.svg" @click="post()">
+    Blogger
   </VButton>
 </template>
 
@@ -8,10 +8,11 @@
 import $store from "@/entrypoints/popup/store";
 
 const params = new URLSearchParams({
-  text: `${$store.tab.title} ${$store.tab.url}`,
+  n: $store.tab.title,
+  u: $store.tab.url,
 }).toString();
 
 const post = () => {
-  window.open(`https://mstdn.jp/share?${params}`);
+  window.open(`https://www.blogger.com/blog-this.g?${params}`);
 };
 </script>

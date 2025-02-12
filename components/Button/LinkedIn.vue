@@ -7,8 +7,12 @@
 <script setup>
 import $store from "@/entrypoints/popup/store";
 
+const params = new URLSearchParams({
+  shareActive: 'true',
+  text: `${$store.tab.title} ${$store.tab.url}`,
+}).toString();
+
 const linkedin = () => {
-  // window.open(`https://linkedin.com/sharing/share-offsite/?url=${$store.tab.url}`);
-  window.open(`https://linkedin.com/feed/?shareActive=true&text=${$store.tab.title}%20${$store.tab.url}`);
+  window.open(`https://linkedin.com/feed/?${params}`);
 };
 </script>
