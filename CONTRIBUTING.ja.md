@@ -6,7 +6,7 @@
 
 ## 機能をリクエストしたい
 - 増やして欲しいサービスのボタンがある方は、ぜひお気軽に[GitHub Issue](https://github.com/psephopaiktes/share-it/issues/new)を追加するか、[わたしのXアカウント](https://x.com/psephopaiktes)にリプライしてください。
-- ただし、対応できるかは**そのサービスがURLクエリからの投稿をサポートしているかどうか**に依存します。例えば、[Notion Web Clipper](https://www.notion.com/web-clipper)などはURLからの新規投稿がサポートされていないため、実現できません。
+- ただし、対応できるかは**そのサービスがURLクエリからの投稿をサポートしているかどうか**に依存します。例えば、[Notion Web Clipper](https://www.notion.com/web-clipper)はURLからの新規投稿がサポートされていないため、実現できません。
 - また、個々のボタン自体は比較的かんたんに実装されています。[こちらのソースコード](https://github.com/psephopaiktes/share-it/blob/main/components/Button/X.vue)を見て、簡単そうだと感じた方はぜひPullRequestを送ってください！
 
 ## Pull Requestで機能を提案したい

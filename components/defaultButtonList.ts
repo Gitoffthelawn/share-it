@@ -10,6 +10,7 @@ export default [
 	{ componentName: "LinkedIn", enable: false },
 	{ componentName: "Gmail", enable: true },
 	{ componentName: "Email", enable: false },
+	{ componentName: "Sms", enable: true },
 	{ componentName: "CopyLinkAsRichText", enable: true },
 	{ componentName: "CopyTitle", enable: false },
 	{ componentName: "CopyTitleUrl", enable: true },
