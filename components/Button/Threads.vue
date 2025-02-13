@@ -1,5 +1,5 @@
 <template>
-  <VButton img="/img/threads.svg" @click="post()">
+  <VButton img="/img/threads.svg" @click="post()" darkLogo>
     Threads
   </VButton>
 </template>

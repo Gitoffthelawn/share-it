@@ -1,5 +1,5 @@
 <template>
-  <VButton img="/img/x.svg" @click="post()">
+  <VButton img="/img/x.svg" @click="post()" darkLogo>
     X
   </VButton>
 </template>
@@ -16,12 +16,3 @@ const post = () => {
   window.open(`https://x.com/intent/post?${params}`);
 };
 </script>
-
-<style scoped>
-::v-deep(img) {
-  @media (prefers-color-scheme: dark) {
-    filter: brightness(8000%);
-    opacity: .6;
-  }
-}
-</style>

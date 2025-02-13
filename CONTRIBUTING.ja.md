@@ -24,4 +24,5 @@ npm start
 
 ### ボタンを追加する
 0. `/components/Button/` に追加ボタンコンポーネントを追加します。
-0. `/components/defaultButtonList.ts` に行を追加します。`enable`はデフォルトで有効になっているかのフラグです。一般的に、ユーザーが少ないと思われるサービスの場合は`false`にしてください。
+0. `public/img`に24x24のsvg形式のロゴを追加します。
+0. `/components/defaultButtonList.ts` に行を追加します。`enable`はデフォルトで有効にするかのフラグです。一般的に、ユーザーが少ないと思われるサービスの場合は`false`にしてください。

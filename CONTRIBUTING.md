@@ -24,4 +24,5 @@ npm start
 
 ### Adding a Button
 0. Add the new button component to `/components/Button/`.
-0. Add a line to `/components/defaultButtonList.js`. The `enable` flag indicates whether it is enabled by default. Generally, set it to `false` for services that are expected to have fewer users.
+0. Add a 24x24 SVG logo to `public/img`.
+0. Add a line to `/components/defaultButtonList.ts`. The `enable` flag determines whether the button is enabled by default. Generally, set this to `false` for services that are expected to have fewer users.

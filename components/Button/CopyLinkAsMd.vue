@@ -1,5 +1,5 @@
 <template>
-  <VButton img="/img/md.svg" @click="copy()">
+  <VButton img="/img/md.svg" @click="copy()" darkLogo>
     {{ $store.isEn ? 'Copy link as Markdown' : 'Markdownでリンクをコピー' }}
   </VButton>
 </template>
@@ -21,12 +21,3 @@ const copy = () => {
   }, () => { window.close() });
 };
 </script>
-
-<style scoped>
-::v-deep(img) {
-  @media (prefers-color-scheme: dark) {
-    filter: brightness(5000%);
-    opacity: .6;
-  }
-}
-</style>

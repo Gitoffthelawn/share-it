@@ -1,5 +1,5 @@
 <template>
-  <VButton img="/img/tumblr.svg" @click="post()">
+  <VButton img="/img/tumblr.svg" @click="post()" darkLogo>
     Tumblr
   </VButton>
 </template>
@@ -16,12 +16,3 @@ const post = () => {
   window.open(`https://www.tumblr.com/widgets/share/tool?${params}`);
 };
 </script>
-
-<style scoped>
-::v-deep(img) {
-  @media (prefers-color-scheme: dark) {
-    filter: brightness(5000%);
-    opacity: .6;
-  }
-}
-</style>

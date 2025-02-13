@@ -56,6 +56,7 @@ onMounted(() => {
   });
 
   document.addEventListener("keydown", handleKeyNavigation);
+  // document.documentElement.lang = browser.i18n.getUILanguage(); // TODO: 対応言語にある場合は実行
 });
 </script>
 

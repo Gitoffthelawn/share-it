@@ -1,5 +1,5 @@
 <template>
-  <VButton img="/img/archive.svg" @click="search()">
+  <VButton img="/img/archive.svg" @click="search()" darkLogo>
     Wayback Machine
   </VButton>
 </template>
@@ -11,12 +11,3 @@ const search = () => {
   window.open(`https://web.archive.org/web/*/${$store.tab.url}`);
 };
 </script>
-
-<style scoped>
-::v-deep(img) {
-  @media (prefers-color-scheme: dark) {
-    filter: brightness(8000%);
-    opacity: .6;
-  }
-}
-</style>
