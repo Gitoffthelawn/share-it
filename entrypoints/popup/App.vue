@@ -43,10 +43,6 @@ const handleKeyNavigation = (e) => {
 };
 
 onMounted(() => {
-  if (browser.i18n.getUILanguage().includes("ja")) {
-    $store.isEn = false;
-  }
-
   getCurrentTab().then((tab) => {
     $store.tab = tab;
 
@@ -56,7 +52,6 @@ onMounted(() => {
   });
 
   document.addEventListener("keydown", handleKeyNavigation);
-  // document.documentElement.lang = browser.i18n.getUILanguage(); // TODO: 対応言語にある場合は実行
 });
 </script>
 

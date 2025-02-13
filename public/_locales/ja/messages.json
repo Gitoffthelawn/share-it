@@ -6,6 +6,9 @@
 		"message": "Share-it"
 	},
 	"extDescription": {
-		"message": "開いているWebページを、さまざまなサービス・形式で共有・コピーできます。"
+		"message": "開いているWebページを、さまざまなサービスや形式で共有・コピーできます。"
+	},
+	"popupTitle": {
+		"message": "このページを共有"
 	}
 }

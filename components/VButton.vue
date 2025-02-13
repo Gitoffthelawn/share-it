@@ -1,16 +1,19 @@
 <script setup>
 import $store from "@/entrypoints/popup/store";
+import i18n from "@/lib/i18n";
 
 defineProps({
   img: String,
   darkLogo: Boolean,
+  label: Object | String,
 });
 </script>
 
 <template>
   <button :disabled="$store.editing" :class="{ edit: $store.editing }">
     <img :src="img" alt="icon" :class="{ invert: darkLogo }" />
-    <slot></slot>
+    <span v-if="typeof label === 'string'">{{ label }}</span>
+    <span v-else>{{ i18n.t(label) }}</span>
   </button>
 </template>
 

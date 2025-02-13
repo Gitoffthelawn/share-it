@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import i18n from "@/lib/i18n";
 
 const modules = import.meta.glob("./Button/*.vue", { eager: true });
 const ButtonComponents = Object.fromEntries(
@@ -19,7 +20,6 @@ onMounted(async () => {
   try {
     const data = await browser.storage.sync.get("options");
     buttons.value = data.options?.buttons || [...DefaultButtonList];
-    console.log('Loaded options:', buttons.value);
 
     if (data.options?.buttons) {
       const userButtons = data.options.buttons;
@@ -95,22 +95,34 @@ const save = () => {
     </template>
   </ul>
 
-  <a v-if="$store.isEn" href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.md" id="request"
-    target="_blank">
-    Request new button <img src="/img/send.svg" alt="icon">
-  </a>
-  <a v-else href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.ja.md" id="request" target="_blank">
-    ボタンをリクエスト <img src="/img/send.svg" alt="icon">
+  <a href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.md" id="request" target="_blank">
+    {{ i18n.t({
+      en: 'Request new button',
+      ja: 'ボタンのリクエスト',
+      "zh-CN": '请求新按钮',
+      es: 'Solicitar nuevo botón',
+    }) }}
+    <img src="/img/send.svg" alt="icon">
   </a>
 
   <footer>
     <button v-if="!$store.editing" @click="$store.editing = !$store.editing">
       <img src="/img/setting.svg" alt="icon">
-      {{ $store.isEn ? 'Manage Buttons' : 'ボタン設定' }}
+      {{ i18n.t({
+        en: 'Manage Buttons',
+        ja: 'ボタン設定',
+        "zh-CN": '管理按钮',
+        es: 'Administrar botones',
+      }) }}
     </button>
     <button v-else @click="save()" class="complete">
       <img src="/img/complete.svg" alt="icon">
-      {{ $store.isEn ? 'Complete' : '完了' }}
+      {{ i18n.t({
+        en: 'Complete',
+        ja: '完了',
+        "zh-CN": '完成',
+        es: 'Completar',
+      }) }}
     </button>
 
   </footer>

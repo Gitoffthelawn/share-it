@@ -9,6 +9,7 @@ export default [
 	{ componentName: "Blogger", enable: false },
 	{ componentName: "LinkedIn", enable: false },
 	{ componentName: "Gmail", enable: true },
+	{ componentName: "HackerNews", enable: true },
 	{ componentName: "Email", enable: false },
 	{ componentName: "Sms", enable: true },
 	{ componentName: "CopyLinkAsRichText", enable: true },
