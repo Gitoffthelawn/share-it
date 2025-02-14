@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "OSの機能でシェア",
@@ -7,34 +7,48 @@ const label = {
   es: "Compartir con extensiones del SO"
 };
 
-const alertMessage = {
-  ja: "このブラウザではサポートされていません",
-  en: "This browser is not supported",
-  "zh-CN": "此浏览器不支持",
-  es: "Este navegador no es compatible"
-};
-
 // Action
+import { ref, onMounted } from 'vue';
 import $store from "@/entrypoints/popup/store";
+
+const isSupported = ref(false);
+
+onMounted(() => {
+  if (!navigator.share) return;
+  isSupported.value = true;
+});
 
 const run = () => {
   if (!navigator.share) {
-    alert(alertMessage[$store.locale]);
+    alert("Error: This feature is not supported on your browser.");
     window.close();
     return;
   }
 
-  const title = $store.tab.title;
-  const url = $store.tab.url;
+  const title = $store.tab?.title;
+  const url = $store.tab?.url;
 
   navigator.share({ title, url });
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/other.svg";
+
+// Tooltip
+const tooltip = {
+  ja: "OSのネイティブ共有機能を呼び出します。サポートされている場合のみ表示されます。",
+  en: "Calls the OS's native share feature. Only shown if supported.",
+  "zh-CN": "调用操作系统的原生共享功能。仅在支持时显示。",
+  es: "Llama a la función de compartir nativa del SO. Solo se muestra si es compatible."
+};
 </script>
 
 <template>
-  <VButton :label @click="run()" :img />
+  <VButton :label @click="run()" :img :tooltip :class="{ hide: !isSupported && !$store.editing }" />
 </template>
+
+<style scoped>
+.hide {
+  display: none;
+}
+</style>

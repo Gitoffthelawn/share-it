@@ -1,6 +1,14 @@
-const default_locale = browser.runtime.getManifest().default_locale || "en";
+const default_locale: string =
+	browser.runtime.getManifest().default_locale || "en";
 
-const locales = {
+interface LocaleSetting {
+	[key: Lowercase<string>]: {
+		label: string;
+		lang?: string;
+		dir?: "rtl" | "ltr";
+	};
+}
+const locales: LocaleSetting = {
 	en: {
 		label: "English",
 		lang: "en-US",
@@ -13,15 +21,22 @@ const locales = {
 		lang: "zh-CN",
 	},
 	es: {
-    label: "Español",
-  },
+		label: "Español",
+	},
 };
 
 export default {
-  default_locale, locales,
+	default_locale,
+	locales,
 
-  t(translations: Record<string, string>): string {
-    const userLang = browser.i18n.getUILanguage().toLowerCase();
-    return translations[userLang] || translations[default_locale] || "";
-  },
+	t(translations: Record<string, string>): string {
+		if (!(default_locale in translations)) {
+			throw new Error(
+				`The default locale '${default_locale}' is required in the translations`,
+			);
+		}
+
+		const userLang = browser.i18n.getUILanguage().toLowerCase();
+		return translations[userLang] || translations[default_locale];
+	},
 };

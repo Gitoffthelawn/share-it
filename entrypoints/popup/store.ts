@@ -1,7 +1,13 @@
 import { reactive } from "vue";
 
-const $store = reactive({
-	tab: {},
+// $storeの型情報
+export interface Store {
+	tab: chrome.tabs.Tab | null;
+	editing: boolean;
+}
+
+const $store: Store = reactive({
+	tab: null,
 	editing: false,
 });
 

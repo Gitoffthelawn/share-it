@@ -1,6 +1,7 @@
 {
-	"recommendations": [
+  "recommendations": [
     "Vue.volar",
     "phoenisx.cssvar",
+    "biomejs.biome",
   ]
 }

@@ -21,8 +21,9 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+
 button {
-	padding: 0 25px;
+	padding: 0 24px;
 	letter-spacing: .05em;
 
 	overflow: hidden;

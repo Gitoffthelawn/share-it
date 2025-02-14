@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "LinkedInに投稿",
@@ -10,18 +10,18 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  shareActive: 'true',
-  text: `${$store.tab.title} ${$store.tab.url}`,
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    shareActive: 'true',
+    text: `${$store.tab?.title} ${$store.tab?.url}`,
+  }).toString();
+
   window.open(`https://linkedin.com/feed/?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/linkedin.svg";
 </script>
 
 <template>

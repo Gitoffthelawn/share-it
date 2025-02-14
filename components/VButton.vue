@@ -1,19 +1,26 @@
-<script setup>
+<script lang="ts" setup>
 import $store from "@/entrypoints/popup/store";
 import i18n from "@/lib/i18n";
 
-defineProps({
-  img: String,
-  darkLogo: Boolean,
-  label: Object | String,
-});
+defineProps<{
+  label: Record<string, string>,
+  img: string,
+  darkLogo?: boolean,
+  tooltip?: Record<string, string>,
+}>()
 </script>
 
 <template>
   <button :disabled="$store.editing" :class="{ edit: $store.editing }">
-    <img :src="img" alt="icon" :class="{ invert: darkLogo }" />
-    <span v-if="typeof label === 'string'">{{ label }}</span>
-    <span v-else>{{ i18n.t(label) }}</span>
+    <img :src="img" alt="Service Icon" :class="{ invert: darkLogo }" class="icon" />
+
+    <span class="label">
+      {{ i18n.t(label) }}
+    </span>
+
+    <span v-if="tooltip" class="tooltip" :data-tooltip="tooltip ? i18n.t(tooltip) : undefined">
+      <img src="/img/help.svg" alt="help" />
+    </span>
   </button>
 </template>
 
@@ -24,9 +31,11 @@ button {
   border: none;
   color: rgb(var(--color-main) / .9);
   text-align: left;
+  overflow: visible;
+  position: relative;
 
-  img {
-    vertical-align: text-bottom;
+  .icon {
+    vertical-align: middle;
     width: 16px;
     aspect-ratio: 1;
 
@@ -37,12 +46,78 @@ button {
     }
   }
 
+  .label {
+    display: inline-block;
+    width: calc(100% - 24px);
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-  &.edit {
-    pointer-events: none;
+  .tooltip {
+    display: none;
+  }
+}
+
+button.edit {
+  pointer-events: none;
+  padding-right: 56px;
+
+  .icon {
+    margin-left: 24px;
+  }
+
+  .label {
+    cursor: grab;
+    width: calc(100% - 72px);
+  }
+
+  .tooltip {
+    display: block;
+    width: 24px;
+    aspect-ratio: 1;
+    position: absolute;
+    top: calc(50% - 12px);
+    right: 56px;
+    border-radius: 50%;
+    pointer-events: all;
+
+    &:hover {
+      background: rgb(var(--color-main) / .1);
+    }
 
     img {
-      margin-left: 24px;
+      width: 14px;
+      margin: 5px;
+      aspect-ratio: 1;
+    }
+
+    &::before {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 95%;
+      right: 8px;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+      width: 200px;
+      height: auto;
+      padding: 4px 6px;
+      white-space: normal;
+
+      font-size: 11px;
+      color: rgb(var(--color-main) / .8);
+      background-color: rgb(var(--color-base) / .4);
+      backdrop-filter: blur(6px);
+      box-shadow: 2px 6px 16px -2px rgb(var(--color-main) / .2);
+      border: 1px solid rgb(var(--color-theme) / .6);
+      border-radius: 8px 0 8px 8px;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transition: .2s ease-in;
     }
   }
 }

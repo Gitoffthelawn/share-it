@@ -12,7 +12,14 @@ export default defineConfig({
 		description: "__MSG_extDescription__",
 		default_locale: "en",
 		homepage_url: "https://github.com/psephopaiktes/share-it",
-		permissions: ["storage", "tabs", "notifications", "activeTab", "scripting"],
+		permissions: [
+			"storage",
+			"tabs",
+			"notifications",
+			"activeTab",
+			"scripting",
+			"clipboardWrite",
+		],
 		commands: {
 			_execute_action: {
 				suggested_key: {

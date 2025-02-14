@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "HTML形式でリンクをコピー",
@@ -13,7 +13,7 @@ import notify from '@/lib/notifiy';
 
 const run = () => {
   navigator.clipboard.writeText(
-    `<a href="${$store.tab.url}" target="_blank">${$store.tab.title}</a>`
+    `<a href="${$store.tab?.url}" target="_blank">${$store.tab?.title}</a>`
   );
   notify();
 };

@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "Xに投稿",
@@ -10,18 +10,18 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  text: $store.tab.title,
-  url: $store.tab.url,
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    text: $store.tab?.title || "",
+    url: $store.tab?.url || "",
+  }).toString();
+
   window.open(`https://x.com/intent/post?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/x.svg";
 </script>
 
 <template>

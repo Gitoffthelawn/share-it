@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "Pinterestに保存",
@@ -10,18 +10,18 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  description: $store.tab.title,
-  url: $store.tab.url,
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    description: $store.tab?.title || "",
+    url: $store.tab?.url || "",
+  }).toString();
+
   window.open(`https://pinterest.com/pin/create/button/?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/pinterest.svg";
 </script>
 
 <template>

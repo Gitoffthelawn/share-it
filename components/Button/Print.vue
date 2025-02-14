@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "印刷",
@@ -10,16 +10,17 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
+const tabId = $store.tab?.id || 0;
+
 const run = () => {
   browser.scripting.executeScript({
-    target: { tabId: $store.tab.id },
+    target: { tabId },
     func: () => { window.print(); },
   });
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/print.svg";
 </script>
 
 <template>

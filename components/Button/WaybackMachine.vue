@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "Wayback Machineで確認",
@@ -11,12 +11,11 @@ const label = {
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
-  window.open(`https://web.archive.org/web/*/${$store.tab.url}`);
+  window.open(`https://web.archive.org/web/*/${$store.tab?.url}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/waybackmachine.svg";
 </script>
 
 <template>

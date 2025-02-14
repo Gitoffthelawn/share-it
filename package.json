@@ -19,6 +19,7 @@
 		"vue": "^3.5.12"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
 		"@types/chrome": "^0.0.280",
 		"@wxt-dev/module-vue": "^1.0.1",
 		"typescript": "5.6.3",

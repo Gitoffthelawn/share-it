@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "メールで送信",
@@ -10,18 +10,18 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  subject: $store.tab.title,
-  body: $store.tab.url,
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    subject: $store.tab?.title || "",
+    body: $store.tab?.url || "",
+  }).toString();
+
   window.open(`mailto:?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/email.svg";
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "Bloggerに投稿",
@@ -10,18 +10,18 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  n: $store.tab.title,
-  u: $store.tab.url,
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    n: $store.tab?.title || "",
+    u: $store.tab?.url || "",
+  }).toString();
+
   window.open(`https://www.blogger.com/blog-this.g?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/blogger.svg";
 </script>
 
 <template>

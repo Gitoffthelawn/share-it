@@ -1,77 +1,85 @@
-<script setup>
-import { ref, onMounted } from 'vue';
+<script lang="ts" setup>
+import { ref, onMounted, computed, type Component } from "vue";
 import i18n from "@/lib/i18n";
-
-const modules = import.meta.glob("./Button/*.vue", { eager: true });
-const ButtonComponents = Object.fromEntries(
-  Object.entries(modules).map(([path, module]) => {
-    const name = path.match(/\.\/Button\/(.*)\.vue$/)[1];
-    return [name, module.default];
-  }),
-);
-
-import DefaultButtonList from "./defaultButtonList";
+import { defaultButtonList, type ButtonConfig } from "./defaultButtonList";
 import $store from "@/entrypoints/popup/store";
 
-const buttons = ref([]);
-const draggingIndex = ref(0);
+const buttons = ref<ButtonConfig[]>([]);
+const draggingIndex = ref<number>(0);
+
+// import all .vue files in the component/Button
+const modules = import.meta.glob("./Button/*.vue", { eager: true }) as Record<
+  string,
+  { default: Component }
+>;
+const ButtonComponents: Record<string, Component> = Object.fromEntries(
+  Object.entries(modules).map(([path, module]) => {
+    if (!module?.default) {
+      throw new Error(`Failed to load component: ${path}`);
+    }
+    const match = path.match(/\.\/Button\/(.*)\.vue$/);
+    if (!match) {
+      throw new Error(`Invalid component path: ${path}`);
+    }
+    const name = match[1];
+    return [name, module.default];
+  })
+);
+
+const filteredButtons = computed(() =>
+  $store.editing ? buttons.value : buttons.value.filter((button) => button.enable)
+);
 
 onMounted(async () => {
   try {
     const data = await browser.storage.sync.get("options");
-    buttons.value = data.options?.buttons || [...DefaultButtonList];
+    const userButtons: ButtonConfig[] = data.options?.buttons || [];
 
-    if (data.options?.buttons) {
-      const userButtons = data.options.buttons;
+    // Add newly added buttons to the end
+    const newButtons = defaultButtonList.filter(
+      (defaultButton) =>
+        !userButtons.some((browserButton) => browserButton.componentName === defaultButton.componentName)
+    );
 
-      // Updateで追加されたButton要素を末尾に追加する
-      const newButtons = DefaultButtonList.filter(
-        defaultButton => !userButtons.some(
-          browserButton => browserButton.componentName === defaultButton.componentName
-        )
-      );
-
-      buttons.value = userButtons.concat(newButtons).filter(
-        // Updateで削除されたButton要素を削除する
-        button => DefaultButtonList.some(
-          defaultButton => defaultButton.componentName === button.componentName
-        )
-      );
-    } else {
-      buttons.value = [...DefaultButtonList];
-    }
-
+    // Exclude removed buttons
+    buttons.value = [...userButtons, ...newButtons].filter((button) =>
+      defaultButtonList.some((defaultButton) => defaultButton.componentName === button.componentName)
+    );
   } catch (e) {
-    console.error("Failed to retrieve options from storage:", error);
-    buttons.value = [...DefaultButtonList];
+    console.error("Failed to retrieve options from storage:", e);
+    buttons.value = [...defaultButtonList];
   }
-
 });
 
-const dragstart = (index) => {
+const dragstart = (index: number) => {
   draggingIndex.value = index;
 };
-const dragover = (e) => {
+const dragover = (e: DragEvent) => {
   e.preventDefault();
-  e.target.style.borderTop = "4px solid rgb(var(--color-theme) / 0.2)";
+  (e.target as HTMLElement).style.borderTop = "4px solid rgb(var(--color-theme) / 0.2)";
 };
-const dragleave = (e) => {
-  e.target.style.borderTop = "";
+const dragleave = (e: DragEvent) => {
+  (e.target as HTMLElement).style.borderTop = "";
 };
-const ondrop = (index, e) => {
-  e.target.style.borderTop = "";
+const ondrop = (index: number, e: DragEvent) => {
+  (e.target as HTMLElement).style.borderTop = "";
   if (index === draggingIndex.value) return;
 
   const moveValue = { ...buttons.value[draggingIndex.value] };
   buttons.value.splice(draggingIndex.value, 1);
 
-  draggingIndex.value < index
-    ? buttons.value.splice(index - 1, 0, moveValue)
-    : buttons.value.splice(index, 0, moveValue);
+  if (draggingIndex.value < index) {
+    buttons.value.splice(index - 1, 0, moveValue);
+  } else {
+    buttons.value.splice(index, 0, moveValue);
+  }
 };
-const changeSwitch = (index, e) => {
-  buttons.value[index].enable = e.target.checked;
+
+const changeSwitch = (index: number, e: Event) => {
+  const target = e.target as HTMLInputElement;
+  buttons.value[index].enable = target.checked;
 };
+
 const save = () => {
   $store.editing = !$store.editing;
   browser.storage.sync.set({
@@ -84,50 +92,33 @@ const save = () => {
 
 <template>
   <ul class="buttonList">
-    <template v-for="(button, index) in buttons" :key="button.componentName">
-      <li v-if="button.enable || $store.editing" :draggable="$store.editing" @dragstart="dragstart(index)"
-        @dragover="dragover($event)" @dragleave="dragleave($event)" @drop="ondrop(index, $event)"
-        :class="{ disable: !button.enable }">
-        <img v-if="$store.editing" class="handle" src="/img/drag.svg" alt="drag">
+    <template v-for="(button, index) in filteredButtons" :key="button.componentName">
+      <li :draggable="$store.editing" @dragstart="dragstart(index)" @dragover="dragover" @dragleave="dragleave"
+        @drop="ondrop(index, $event)" :class="{ disable: !button.enable }">
+        <img v-if="$store.editing" class="handle" src="/img/drag.svg" alt="drag" />
         <component :is="ButtonComponents[button.componentName]" :tabindex="index" />
-        <input v-if="$store.editing" type="checkbox" :checked="button.enable" @change="changeSwitch(index, $event)">
+        <input v-if="$store.editing" type="checkbox" :checked="button.enable" @change="changeSwitch(index, $event)" />
       </li>
     </template>
   </ul>
 
   <a href="https://github.com/psephopaiktes/share-it/blob/main/CONTRIBUTING.md" id="request" target="_blank">
-    {{ i18n.t({
-      en: 'Request new button',
-      ja: 'ボタンのリクエスト',
-      "zh-CN": '请求新按钮',
-      es: 'Solicitar nuevo botón',
-    }) }}
-    <img src="/img/send.svg" alt="icon">
+    {{ i18n.t({ en: "Request new button", ja: "ボタンのリクエスト", "zh-CN": "请求新按钮", es: "Solicitar nuevo botón" }) }}
+    <img src="/img/send.svg" alt="icon" />
   </a>
 
   <footer>
     <button v-if="!$store.editing" @click="$store.editing = !$store.editing">
-      <img src="/img/setting.svg" alt="icon">
-      {{ i18n.t({
-        en: 'Manage Buttons',
-        ja: 'ボタン設定',
-        "zh-CN": '管理按钮',
-        es: 'Administrar botones',
-      }) }}
+      <img src="/img/setting.svg" alt="icon" />
+      {{ i18n.t({ en: "Manage Buttons", ja: "ボタン設定", "zh-CN": "管理按钮", es: "Administrar botones" }) }}
     </button>
     <button v-else @click="save()" class="complete">
-      <img src="/img/complete.svg" alt="icon">
-      {{ i18n.t({
-        en: 'Complete',
-        ja: '完了',
-        "zh-CN": '完成',
-        es: 'Completar',
-      }) }}
+      <img src="/img/complete.svg" alt="icon" />
+      {{ i18n.t({ en: "Complete", ja: "完了", "zh-CN": "完成", es: "Completar" }) }}
     </button>
-
   </footer>
-
 </template>
+
 <style scoped>
 .buttonList {
   margin-top: 8px;

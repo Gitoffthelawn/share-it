@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "Tumblrに投稿",
@@ -10,18 +10,18 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  canonicalUrl: $store.tab.url,
-  title: $store.tab.title,
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    canonicalUrl: $store.tab?.url || "",
+    title: $store.tab?.title || "",
+  }).toString();
+
   window.open(`https://www.tumblr.com/widgets/share/tool?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/tumblr.svg";
 </script>
 
 <template>

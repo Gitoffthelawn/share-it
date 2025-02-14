@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "Blueskyに投稿",
@@ -10,17 +10,17 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  text: `${$store.tab.title} ${$store.tab.url}`,
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    text: `${$store.tab?.title} ${$store.tab?.url}`,
+  }).toString();
+
   window.open(`https://bsky.app/intent/compose?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/bluesky.svg";
 </script>
 
 <template>

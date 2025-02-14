@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "Gmailで送信",
@@ -10,21 +10,21 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const params = new URLSearchParams({
-  su: $store.tab.title,
-  body: $store.tab.url,
-  fs: 1,
-  tf: 1,
-  view: "cm",
-}).toString();
-
 const run = () => {
+
+  const params = new URLSearchParams({
+    su: $store.tab?.title || "",
+    body: $store.tab?.url || "",
+    fs: "1",
+    tf: "1",
+    view: "cm",
+  }).toString();
+
   window.open(`https://gmail.google.com/gmail?${params}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/gmail.svg";
 </script>
 
 <template>

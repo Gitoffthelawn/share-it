@@ -1,4 +1,9 @@
-export default [
+export interface ButtonConfig {
+	componentName: string;
+	enable: boolean;
+}
+
+export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "X", enable: true },
 	{ componentName: "Bluesky", enable: false },
 	{ componentName: "Threads", enable: false },

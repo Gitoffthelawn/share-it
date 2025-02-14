@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import ButtonList from "@/components/ButtonList.vue";
 import $store from "./store";
@@ -13,29 +13,33 @@ const getCurrentTab = async () => {
   return tab;
 };
 
-const handleKeyNavigation = (e) => {
-  if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+const handleKeyNavigation = (event: KeyboardEvent) => {
+  if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
 
   const focusableButtons = Array.from(
     document.querySelectorAll("button, a")
-  ).filter(el => {
+  ).filter((el): el is HTMLElement => {
     const style = getComputedStyle(el);
     return style.display !== "none" && style.visibility !== "hidden";
   });
+  if (focusableButtons.length === 0) return;
 
-  if (!focusableButtons.includes(document.activeElement) && e.key === "ArrowDown") {
-    e.preventDefault();
-    focusableButtons[0].focus();
+  const activeElement = document.activeElement as HTMLElement | null;
+  if (!activeElement || !focusableButtons.includes(activeElement)) {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      focusableButtons[0].focus();
+    }
     return;
   }
 
-  const currentIndex = focusableButtons.indexOf(document.activeElement);
+  const currentIndex = focusableButtons.indexOf(activeElement);
   if (currentIndex === -1) return;
 
-  e.preventDefault();
+  event.preventDefault();
 
   const nextIndex =
-    e.key === "ArrowDown"
+    event.key === "ArrowDown"
       ? (currentIndex + 1) % focusableButtons.length
       : (currentIndex - 1 + focusableButtons.length) % focusableButtons.length;
 
@@ -83,6 +87,7 @@ header {
     text-indent: 28px;
     display: -webkit-box;
     overflow: hidden;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     font-size: 18px;
@@ -100,6 +105,7 @@ header {
     font-size: 12px;
     display: -webkit-box;
     overflow: hidden;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }

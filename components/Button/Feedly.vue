@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "FeedlyでRSSを探す",
@@ -11,12 +11,11 @@ const label = {
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
-  window.open(`https://feedly.com/i/discover/sources/search/feed/${$store.tab.url}`);
+  window.open(`https://feedly.com/i/discover/sources/search/feed/${$store.tab?.url}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/feedly.svg";
 </script>
 
 <template>

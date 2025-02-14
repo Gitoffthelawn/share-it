@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "はてなブックマーク",
@@ -11,12 +11,11 @@ const label = {
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
-  window.open(`https://b.hatena.ne.jp/entry/${$store.tab.url}`);
+  window.open(`https://b.hatena.ne.jp/entry/${$store.tab?.url}`);
 };
 
 // Image
-const thisFileName = new URL(import.meta.url).pathname.split('/').pop();
-const img = `/img/${thisFileName.toLowerCase().replace('.vue', '.svg')}`;
+const img = "/img/hatebu.svg";
 </script>
 
 <template>

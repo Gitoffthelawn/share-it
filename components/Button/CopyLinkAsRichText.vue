@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
 // Label
 const label = {
   ja: "リッチテキストでリンクをコピー",
@@ -11,26 +11,35 @@ const label = {
 import $store from "@/entrypoints/popup/store";
 import notify from '@/lib/notifiy';
 
-const run = () => {
-  const str = `<a href="${$store.tab.url}">${$store.tab.title}</a>`;
+const run = async () => {
+  const str = `<a href="${$store.tab?.url}">${$store.tab?.title}</a>`;
 
-  const listener = (e) => {
-    e.clipboardData.setData("text/html", str);
-    e.clipboardData.setData("text/plain", str);
-    e.preventDefault();
-  };
+  try {
+    const clipboardItem = new ClipboardItem({
+      "text/html": new Blob([str], { type: "text/html" }),
+      "text/plain": new Blob([str], { type: "text/plain" }),
+    });
 
-  document.addEventListener("copy", listener);
-  document.execCommand("copy");
-  document.removeEventListener("copy", listener);
+    await navigator.clipboard.write([clipboardItem]);
 
-  notify();
+    notify();
+  } catch (err) {
+    console.error("Copy Failed:", err);
+  }
 };
 
 // Image
 const img = "/img/richtext.svg";
+
+// Tooltip
+const tooltip = {
+  ja: "リンクされたリッチテキストでコピーできます。メッセンジャーアプリやメールに貼り付ける際に便利です",
+  en: "You can copy the link as rich text. It is useful when pasting into messenger apps or emails",
+  "zh-CN": "您可以将链接复制为富文本。在粘贴到通讯应用或电子邮件时很有用",
+  es: "Puede copiar el enlace como texto enriquecido. Es útil al pegarlo en aplicaciones de mensajería o correos electrónicos"
+};
 </script>
 
 <template>
-  <VButton :label @click="run()" :img />
+  <VButton :label @click="run()" :img :tooltip />
 </template>
