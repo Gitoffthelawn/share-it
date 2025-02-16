@@ -16,8 +16,16 @@ const run = () => {
 
 // Image
 const img = "/img/waybackmachine.svg";
+
+// Tooltip
+const tooltip = {
+  ja: "Internet Archive の Wayback Machine このページの過去キャッシュを確認します",
+  en: "Check this page's past cache in the Internet Archive's Wayback Machine",
+  "zh-CN": "在互联网档案馆的Wayback Machine中查看此页面的过去缓存",
+  es: "Ver la caché pasada de esta página en la Wayback Machine de Internet Archive"
+};
 </script>
 
 <template>
-  <VButton :label @click="run()" :img darkLogo />
+  <VButton :label @click="run()" :img :tooltip darkLogo />
 </template>

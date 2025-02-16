@@ -22,8 +22,16 @@ const run = () => {
 
 // Image
 const img = "/img/qr.svg";
+
+// Tooltip
+const tooltip = {
+  ja: "このサイトを開くQRコードを表示、保存できます",
+  en: "You can show and save a QR code to open this site",
+  "zh-CN": "您可以显示和保存一个QR码以打开此站点",
+  es: "Puede mostrar y guardar un código QR para abrir este sitio",
+};
 </script>
 
 <template>
-  <VButton :label @click="run()" :img />
+  <VButton :label @click="run()" :img :tooltip />
 </template>
