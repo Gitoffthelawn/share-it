@@ -1,23 +1,22 @@
 <script lang="ts" setup>
 // Label
 const label = {
-  ja: "Bloggerに投稿",
-  en: "Post to Blogger",
-  "zh-CN": "分享到Blogger",
-  es: "Publicar en Blogger"
+	ja: "Bloggerに投稿",
+	en: "Post to Blogger",
+	"zh-CN": "分享到Blogger",
+	es: "Publicar en Blogger",
 };
 
 // Action
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
+	const params = new URLSearchParams({
+		n: $store.tab?.title || "",
+		u: $store.tab?.url || "",
+	}).toString();
 
-  const params = new URLSearchParams({
-    n: $store.tab?.title || "",
-    u: $store.tab?.url || "",
-  }).toString();
-
-  window.open(`https://www.blogger.com/blog-this.g?${params}`);
+	window.open(`https://www.blogger.com/blog-this.g?${params}`);
 };
 
 // Image

@@ -1,22 +1,21 @@
 <script lang="ts" setup>
 // Label
 const label = {
-  ja: "SMSで送信",
-  en: "Send via SMS",
-  "zh-CN": "通过短信发送",
-  es: "Enviar por SMS"
+	ja: "SMSで送信",
+	en: "Send via SMS",
+	"zh-CN": "通过短信发送",
+	es: "Enviar por SMS",
 };
 
 // Action
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
+	const params = new URLSearchParams({
+		body: `${$store.tab?.title} ${$store.tab?.url}`,
+	}).toString();
 
-  const params = new URLSearchParams({
-    body: `${$store.tab?.title} ${$store.tab?.url}`,
-  }).toString();
-
-  window.open(`sms:?${params}`);
+	window.open(`sms:?${params}`);
 };
 
 // Image

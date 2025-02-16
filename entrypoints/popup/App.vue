@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 import ButtonList from "@/components/ButtonList.vue";
 import $store from "./store";
 
@@ -17,7 +17,7 @@ const handleKeyNavigation = (event: KeyboardEvent) => {
   if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
 
   const focusableButtons = Array.from(
-    document.querySelectorAll("button, a")
+    document.querySelectorAll("button, a"),
   ).filter((el): el is HTMLElement => {
     const style = getComputedStyle(el);
     return style.display !== "none" && style.visibility !== "hidden";

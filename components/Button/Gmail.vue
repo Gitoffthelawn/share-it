@@ -1,26 +1,25 @@
 <script lang="ts" setup>
 // Label
 const label = {
-  ja: "Gmailで送信",
-  en: "Send via Gmail",
-  "zh-CN": "通过Gmail发送",
-  es: "Enviar por Gmail",
+	ja: "Gmailで送信",
+	en: "Send via Gmail",
+	"zh-CN": "通过Gmail发送",
+	es: "Enviar por Gmail",
 };
 
 // Action
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
+	const params = new URLSearchParams({
+		su: $store.tab?.title || "",
+		body: $store.tab?.url || "",
+		fs: "1",
+		tf: "1",
+		view: "cm",
+	}).toString();
 
-  const params = new URLSearchParams({
-    su: $store.tab?.title || "",
-    body: $store.tab?.url || "",
-    fs: "1",
-    tf: "1",
-    view: "cm",
-  }).toString();
-
-  window.open(`https://gmail.google.com/gmail?${params}`);
+	window.open(`https://gmail.google.com/gmail?${params}`);
 };
 
 // Image

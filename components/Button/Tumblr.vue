@@ -1,23 +1,22 @@
 <script lang="ts" setup>
 // Label
 const label = {
-  ja: "Tumblrに投稿",
-  en: "Post to Tumblr",
-  "zh-CN": "分享到Tumblr",
-  es: "Publicar en Tumblr"
+	ja: "Tumblrに投稿",
+	en: "Post to Tumblr",
+	"zh-CN": "分享到Tumblr",
+	es: "Publicar en Tumblr",
 };
 
 // Action
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
+	const params = new URLSearchParams({
+		canonicalUrl: $store.tab?.url || "",
+		title: $store.tab?.title || "",
+	}).toString();
 
-  const params = new URLSearchParams({
-    canonicalUrl: $store.tab?.url || "",
-    title: $store.tab?.title || "",
-  }).toString();
-
-  window.open(`https://www.tumblr.com/widgets/share/tool?${params}`);
+	window.open(`https://www.tumblr.com/widgets/share/tool?${params}`);
 };
 
 // Image

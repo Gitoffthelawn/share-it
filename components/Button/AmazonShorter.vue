@@ -8,11 +8,11 @@ const label = {
 };
 
 // Action
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 import $store from "@/entrypoints/popup/store";
 
-const url = ref('');
-const domain = ref('');
+const url = ref("");
+const domain = ref("");
 const isAmazon = ref(false);
 
 onMounted(() => {
@@ -26,7 +26,7 @@ onMounted(() => {
 const run = () => {
 	const ID = url.value
 		.slice(url.value.search(/(\/product\/|\/dp\/)/))
-		.split('/')[2]
+		.split("/")[2]
 		.slice(0, 10);
 
 	window.open(`https://${domain.value}/dp/${ID}`);

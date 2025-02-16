@@ -1,23 +1,22 @@
 <script lang="ts" setup>
 // Label
 const label = {
-  ja: "Xに投稿",
-  en: "Post to X",
-  "zh-CN": "分享到X",
-  es: "Compartir en X",
+	ja: "Xに投稿",
+	en: "Post to X",
+	"zh-CN": "分享到X",
+	es: "Compartir en X",
 };
 
 // Action
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
+	const params = new URLSearchParams({
+		text: $store.tab?.title || "",
+		url: $store.tab?.url || "",
+	}).toString();
 
-  const params = new URLSearchParams({
-    text: $store.tab?.title || "",
-    url: $store.tab?.url || "",
-  }).toString();
-
-  window.open(`https://x.com/intent/post?${params}`);
+	window.open(`https://x.com/intent/post?${params}`);
 };
 
 // Image
