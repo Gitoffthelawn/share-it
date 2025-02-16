@@ -10,11 +10,15 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "Mastodon", enable: false },
 	{ componentName: "Facebook", enable: false },
 	{ componentName: "Pocket", enable: true },
+	{ componentName: "Instapaper", enable: false },
 	{ componentName: "Pinterest", enable: false },
 	{ componentName: "Blogger", enable: false },
 	{ componentName: "Gmail", enable: true },
+	{ componentName: "GoogleCalendar", enable: true },
+	{ componentName: "Outlook", enable: false },
 	{ componentName: "AmazonShorter", enable: true },
 	{ componentName: "Messenger", enable: false },
+	{ componentName: "Skype", enable: false },
 
 	// System
 	{ componentName: "CopyLinkAsRichText", enable: true },
@@ -29,16 +33,29 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "QR", enable: true },
 
 	// For Developers
+	{ componentName: "Reddit", enable: true },
 	{ componentName: "HackerNews", enable: false },
 	{ componentName: "PageSpeed", enable: true },
 	{ componentName: "WaybackMachine", enable: true },
 	{ componentName: "Wappalyzer", enable: false },
+	{ componentName: "Trello", enable: false },
+	{ componentName: "WordPress", enable: false },
 
 	// Non major, Local
+	{ componentName: "Buffer", enable: false },
+	{ componentName: "Snapchat", enable: false },
+	{ componentName: "Telegram", enable: false },
 	{ componentName: "LinkedIn", enable: false },
 	{ componentName: "Feedly", enable: false },
 	{ componentName: "Hatebu", enable: false },
 	{ componentName: "Note", enable: false },
 	{ componentName: "LINE", enable: false },
 	{ componentName: "Tumblr", enable: false },
+	{ componentName: "Digg", enable: false },
+	{ componentName: "Flipboard", enable: false },
+	{ componentName: "Plurk", enable: false },
+	{ componentName: "Refind", enable: false },
+	{ componentName: "VKontakte", enable: false },
+	{ componentName: "Weibo", enable: false },
+	{ componentName: "WhatsApp", enable: false },
 ];
