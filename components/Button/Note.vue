@@ -3,7 +3,7 @@
 const label = {
 	ja: "noteに投稿",
 	en: "Post to note",
-	"zh-CN": "发布到note",
+	"zh-cn": "发布到note",
 	es: "Publicar en note",
 };
 

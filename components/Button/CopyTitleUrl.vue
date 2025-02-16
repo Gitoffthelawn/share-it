@@ -3,7 +3,7 @@
 const label = {
 	ja: "タイトルとURLをコピー",
 	en: "Copy title & URL",
-	"zh-CN": "复制标题和链接",
+	"zh-cn": "复制标题和链接",
 	es: "Copiar título y URL",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "Pocketに保存",
 	en: "Save to Pocket",
-	"zh-CN": "保存到Pocket",
+	"zh-cn": "保存到Pocket",
 	es: "Guardar en Pocket",
 };
 

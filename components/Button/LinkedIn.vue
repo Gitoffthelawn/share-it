@@ -3,7 +3,7 @@
 const label = {
 	ja: "LinkedInに投稿",
 	en: "Share on LinkedIn",
-	"zh-CN": "分享到LinkedIn",
+	"zh-cn": "分享到LinkedIn",
 	es: "Compartir en LinkedIn",
 };
 

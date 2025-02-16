@@ -3,7 +3,7 @@
 const label = {
 	ja: "Diggに共有",
 	en: "Share on Digg",
-	"zh-CN": "分享到Digg",
+	"zh-cn": "分享到Digg",
 	es: "Compartir en Digg",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "Markdownでリンクをコピー",
 	en: "Copy link as Markdown",
-	"zh-CN": "复制Markdown格式链接",
+	"zh-cn": "复制Markdown格式链接",
 	es: "Copiar enlace como Markdown",
 };
 

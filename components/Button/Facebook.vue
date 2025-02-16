@@ -3,7 +3,7 @@
 const label = {
 	ja: "Facebookに投稿",
 	en: "Share on Facebook",
-	"zh-CN": "分享到Facebook",
+	"zh-cn": "分享到Facebook",
 	es: "Compartir en Facebook",
 };
 

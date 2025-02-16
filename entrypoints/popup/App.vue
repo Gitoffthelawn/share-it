@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
 import ButtonList from "@/components/ButtonList.vue";
+import { onMounted, ref } from "vue";
 import $store from "./store";
 
 const title = ref("Example site");

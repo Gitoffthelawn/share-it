@@ -3,7 +3,7 @@
 const label = {
 	ja: "FeedlyでRSSを探す",
 	en: "Search RSS on Feedly",
-	"zh-CN": "在Feedly中搜索RSS",
+	"zh-cn": "在Feedly中搜索RSS",
 	es: "Buscar RSS en Feedly",
 };
 

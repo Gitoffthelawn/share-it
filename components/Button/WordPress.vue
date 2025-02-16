@@ -3,7 +3,7 @@
 const label = {
 	ja: "WordPressに投稿",
 	en: "Post to WordPress",
-	"zh-CN": "发布到WordPress",
+	"zh-cn": "发布到WordPress",
 	es: "Publicar en WordPress",
 };
 

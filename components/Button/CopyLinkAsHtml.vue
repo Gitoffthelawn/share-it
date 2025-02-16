@@ -3,7 +3,7 @@
 const label = {
 	ja: "HTML形式でリンクをコピー",
 	en: "Copy link as HTML",
-	"zh-CN": "复制HTML格式链接",
+	"zh-cn": "复制HTML格式链接",
 	es: "Copiar enlace como HTML",
 };
 

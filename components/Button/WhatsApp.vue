@@ -3,7 +3,7 @@
 const label = {
 	ja: "WhatsAppで共有",
 	en: "Share on WhatsApp",
-	"zh-CN": "分享到WhatsApp",
+	"zh-cn": "分享到WhatsApp",
 	es: "Compartir en WhatsApp",
 };
 

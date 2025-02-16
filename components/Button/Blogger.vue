@@ -3,7 +3,7 @@
 const label = {
 	ja: "Bloggerに投稿",
 	en: "Post to Blogger",
-	"zh-CN": "分享到Blogger",
+	"zh-cn": "分享到Blogger",
 	es: "Publicar en Blogger",
 };
 

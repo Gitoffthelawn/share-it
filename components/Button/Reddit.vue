@@ -3,7 +3,7 @@
 const label = {
 	ja: "Redditに投稿",
 	en: "Submit to Reddit",
-	"zh-CN": "分享到Reddit",
+	"zh-cn": "分享到Reddit",
 	es: "Compartir en Reddit",
 };
 

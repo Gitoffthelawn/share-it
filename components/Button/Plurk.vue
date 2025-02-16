@@ -3,7 +3,7 @@
 const label = {
 	ja: "Plurkに共有",
 	en: "Share on Plurk",
-	"zh-CN": "分享到Plurk",
+	"zh-cn": "分享到Plurk",
 	es: "Compartir en Plurk",
 };
 

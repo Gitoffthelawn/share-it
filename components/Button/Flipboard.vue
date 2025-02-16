@@ -3,7 +3,7 @@
 const label = {
 	ja: "Flipboardに共有",
 	en: "Share on Flipboard",
-	"zh-CN": "分享到Flipboard",
+	"zh-cn": "分享到Flipboard",
 	es: "Compartir en Flipboard",
 };
 

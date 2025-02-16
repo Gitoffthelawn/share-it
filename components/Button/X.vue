@@ -3,7 +3,7 @@
 const label = {
 	ja: "Xに投稿",
 	en: "Post to X",
-	"zh-CN": "分享到X",
+	"zh-cn": "分享到X",
 	es: "Compartir en X",
 };
 

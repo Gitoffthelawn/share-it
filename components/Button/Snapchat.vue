@@ -3,7 +3,7 @@
 const label = {
 	ja: "Snapchatで共有",
 	en: "Share on Snapchat",
-	"zh-CN": "分享到Snapchat",
+	"zh-cn": "分享到Snapchat",
 	es: "Compartir en Snapchat",
 };
 

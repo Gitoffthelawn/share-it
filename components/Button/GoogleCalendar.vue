@@ -3,7 +3,7 @@
 const label = {
 	ja: "Googleカレンダーに追加",
 	en: "Add to Google Calendar",
-	"zh-CN": "添加到Google日历",
+	"zh-cn": "添加到Google日历",
 	es: "Añadir a Google Calendar",
 };
 

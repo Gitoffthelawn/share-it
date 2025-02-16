@@ -3,7 +3,7 @@
 const label = {
 	ja: "Trelloに追加",
 	en: "Add to Trello",
-	"zh-CN": "添加到Trello",
+	"zh-cn": "添加到Trello",
 	es: "Añadir a Trello",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "メールで送信",
 	en: "Send via Email",
-	"zh-CN": "通过邮件发送",
+	"zh-cn": "通过邮件发送",
 	es: "Enviar por correo",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "Tumblrに投稿",
 	en: "Post to Tumblr",
-	"zh-CN": "分享到Tumblr",
+	"zh-cn": "分享到Tumblr",
 	es: "Publicar en Tumblr",
 };
 

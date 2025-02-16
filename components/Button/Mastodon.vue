@@ -3,7 +3,7 @@
 const label = {
 	ja: "Mastodonに投稿",
 	en: "Post to Mastodon",
-	"zh-CN": "分享到Mastodon",
+	"zh-cn": "分享到Mastodon",
 	es: "Publicar en Mastodon",
 };
 

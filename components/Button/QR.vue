@@ -3,7 +3,7 @@
 const label = {
 	ja: "QRコードを表示",
 	en: "Show QR code",
-	"zh-CN": "显示QR码",
+	"zh-cn": "显示QR码",
 	es: "Mostrar código QR",
 };
 
@@ -26,7 +26,7 @@ const img = "/img/qr.svg";
 const tooltip = {
 	ja: "このサイトを開くQRコードを表示、保存できます",
 	en: "You can show and save a QR code to open this site",
-	"zh-CN": "您可以显示和保存一个QR码以打开此站点",
+	"zh-cn": "您可以显示和保存一个QR码以打开此站点",
 	es: "Puede mostrar y guardar un código QR para abrir este sitio",
 };
 </script>

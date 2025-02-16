@@ -3,7 +3,7 @@
 const label = {
 	ja: "Wappalyzer で分析",
 	en: "Analyze with Wappalyzer",
-	"zh-CN": "使用 Wappalyzer 分析",
+	"zh-cn": "使用 Wappalyzer 分析",
 	es: "Analizar con Wappalyzer",
 };
 
@@ -24,7 +24,7 @@ const img = "/img/wappalyzer.svg";
 const tooltip = {
 	ja: "Wappalyzerでこのページを構築している技術スタックを分析します",
 	en: "Analyze the technology stack that builds this page with Wappalyzer",
-	"zh-CN": "使用 Wappalyzer 分析构建此页面的技术栈",
+	"zh-cn": "使用 Wappalyzer 分析构建此页面的技术栈",
 	es: "Analiza la pila de tecnología que construye esta página con Wappalyzer",
 };
 </script>

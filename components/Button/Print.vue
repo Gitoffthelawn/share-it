@@ -3,7 +3,7 @@
 const label = {
 	ja: "印刷",
 	en: "Print",
-	"zh-CN": "打印",
+	"zh-cn": "打印",
 	es: "Imprimir",
 };
 

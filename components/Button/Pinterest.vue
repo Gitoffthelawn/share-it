@@ -3,7 +3,7 @@
 const label = {
 	ja: "Pinterestに保存",
 	en: "Save to Pinterest",
-	"zh-CN": "保存到Pinterest",
+	"zh-cn": "保存到Pinterest",
 	es: "Guardar en Pinterest",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "SMSで送信",
 	en: "Send via SMS",
-	"zh-CN": "通过短信发送",
+	"zh-cn": "通过短信发送",
 	es: "Enviar por SMS",
 };
 

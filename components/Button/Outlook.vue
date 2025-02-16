@@ -3,7 +3,7 @@
 const label = {
 	ja: "Outlookで送信",
 	en: "Send via Outlook",
-	"zh-CN": "通过Outlook发送",
+	"zh-cn": "通过Outlook发送",
 	es: "Enviar por Outlook",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "Instapaperに保存",
 	en: "Save to Instapaper",
-	"zh-CN": "保存到Instapaper",
+	"zh-cn": "保存到Instapaper",
 	es: "Guardar en Instapaper",
 };
 

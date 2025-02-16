@@ -3,7 +3,7 @@
 const label = {
 	ja: "Gmailで送信",
 	en: "Send via Gmail",
-	"zh-CN": "通过Gmail发送",
+	"zh-cn": "通过Gmail发送",
 	es: "Enviar por Gmail",
 };
 

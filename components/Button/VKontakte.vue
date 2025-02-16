@@ -3,7 +3,7 @@
 const label = {
 	ja: "VKontakteで共有",
 	en: "Share on VKontakte",
-	"zh-CN": "分享到VKontakte",
+	"zh-cn": "分享到VKontakte",
 	es: "Compartir en VKontakte",
 };
 

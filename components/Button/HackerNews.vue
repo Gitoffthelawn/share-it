@@ -3,7 +3,7 @@
 const label = {
 	ja: "Hacker Newsに投稿",
 	en: "Post to Hacker News",
-	"zh-CN": "分享到Hacker News",
+	"zh-cn": "分享到Hacker News",
 	es: "Compartir en Hacker News",
 };
 

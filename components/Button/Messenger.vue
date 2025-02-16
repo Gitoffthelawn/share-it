@@ -3,7 +3,7 @@
 const label = {
 	ja: "Messengerで送信",
 	en: "Send with Messenger",
-	"zh-CN": "使用Messenger发送",
+	"zh-cn": "使用Messenger发送",
 	es: "Enviar con Messenger",
 };
 

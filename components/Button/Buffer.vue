@@ -3,7 +3,7 @@
 const label = {
 	ja: "Bufferに投稿",
 	en: "Post to Buffer",
-	"zh-CN": "分享到Buffer",
+	"zh-cn": "分享到Buffer",
 	es: "Compartir en Buffer",
 };
 

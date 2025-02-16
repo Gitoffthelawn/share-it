@@ -3,7 +3,7 @@
 const label = {
 	ja: "Weiboで共有",
 	en: "Share on Weibo",
-	"zh-CN": "分享到微博",
+	"zh-cn": "分享到微博",
 	es: "Compartir en Weibo",
 };
 

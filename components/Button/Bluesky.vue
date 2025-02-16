@@ -3,7 +3,7 @@
 const label = {
 	ja: "Blueskyに投稿",
 	en: "Post to Bluesky",
-	"zh-CN": "分享到Bluesky",
+	"zh-cn": "分享到Bluesky",
 	es: "Publicar en Bluesky",
 };
 

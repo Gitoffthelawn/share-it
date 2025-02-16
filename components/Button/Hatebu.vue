@@ -3,7 +3,7 @@
 const label = {
 	ja: "はてなブックマーク",
 	en: "Hatena Bookmark",
-	"zh-CN": "分享到Hatena",
+	"zh-cn": "分享到Hatena",
 	es: "Guardar en Hatena",
 };
 

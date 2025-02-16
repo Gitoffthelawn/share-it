@@ -3,13 +3,13 @@
 const label = {
 	ja: "OSの機能でシェア",
 	en: "Share with OS Extensions Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-	"zh-CN": "使用系统分享",
+	"zh-cn": "使用系统分享",
 	es: "Compartir con extensiones del OS",
 };
 
-// Action
-import { ref, onMounted } from "vue";
 import $store from "@/entrypoints/popup/store";
+// Action
+import { onMounted, ref } from "vue";
 
 const isSupported = ref(false);
 
@@ -38,17 +38,17 @@ const img = "/img/other.svg";
 const tooltip = {
 	ja: "OSのネイティブ共有機能を呼び出します。サポートされている場合のみ表示されます。",
 	en: "Calls the OS's native share feature. Only shown if supported.",
-	"zh-CN": "调用操作系统的原生共享功能。仅在支持时显示。",
+	"zh-cn": "调用操作系统的原生共享功能。仅在支持时显示。",
 	es: "Llama a la función de compartir nativa del SO. Solo se muestra si es compatible.",
 };
 </script>
 
 <template>
-  <VButton :label @click="run()" :img :tooltip :class="{ hide: !isSupported && !$store.editing }" />
+	<VButton :label @click="run()" :img :tooltip :class="{ hide: !isSupported && !$store.editing }" />
 </template>
 
 <style scoped>
 .hide {
-  display: none;
+	display: none;
 }
 </style>

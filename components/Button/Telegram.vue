@@ -3,7 +3,7 @@
 const label = {
 	ja: "Telegramで共有",
 	en: "Share on Telegram",
-	"zh-CN": "分享到Telegram",
+	"zh-cn": "分享到Telegram",
 	es: "Compartir en Telegram",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "LINEで送る",
 	en: "Share on LINE",
-	"zh-CN": "分享到LINE",
+	"zh-cn": "分享到LINE",
 	es: "Compartir en LINE",
 };
 

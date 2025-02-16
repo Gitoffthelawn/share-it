@@ -3,7 +3,7 @@
 const label = {
 	ja: "Threadsに投稿",
 	en: "Post to Threads",
-	"zh-CN": "分享到Threads",
+	"zh-cn": "分享到Threads",
 	es: "Publicar en Threads",
 };
 

@@ -3,7 +3,7 @@
 const label = {
 	ja: "Skypeで共有",
 	en: "Share on Skype",
-	"zh-CN": "分享到Skype",
+	"zh-cn": "分享到Skype",
 	es: "Compartir en Skype",
 };
 

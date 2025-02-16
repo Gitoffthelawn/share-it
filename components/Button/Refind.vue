@@ -3,7 +3,7 @@
 const label = {
 	ja: "Refindに保存",
 	en: "Save to Refind",
-	"zh-CN": "保存到Refind",
+	"zh-cn": "保存到Refind",
 	es: "Guardar en Refind",
 };
 
