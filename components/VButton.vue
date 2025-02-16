@@ -62,15 +62,15 @@ button {
 
 button.edit {
   pointer-events: none;
-  padding-right: 56px;
+  padding-right: 160px;
 
   .icon {
-    margin-left: 24px;
+    margin-left: 56px;
   }
 
   .label {
     cursor: grab;
-    width: calc(100% - 72px);
+    width: 100%;
   }
 
   .tooltip {
@@ -100,11 +100,11 @@ button.edit {
       right: 8px;
       pointer-events: none;
       z-index: 100;
-      opacity: 0;
       width: 200px;
       height: auto;
       padding: 4px 6px;
       white-space: normal;
+      display: none;
 
       font-size: 11px;
       color: rgb(var(--color-main) / .8);
@@ -116,8 +116,7 @@ button.edit {
     }
 
     &:hover::before {
-      opacity: 1;
-      transition: .2s ease-in;
+      display: block;
     }
   }
 }

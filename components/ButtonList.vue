@@ -4,6 +4,19 @@ import i18n from "@/lib/i18n";
 import { defaultButtonList, type ButtonConfig } from "./defaultButtonList";
 import $store from "@/entrypoints/popup/store";
 
+const dragHint = i18n.t({
+  en: 'Drag to reorder',
+  ja: '並び替えるにはドラッグしてください',
+  'zh-CN': '拖动以重新排序',
+  es: 'Arrastra para reordenar'
+});
+const moveTopHint = i18n.t({
+  en: 'Move to top',
+  ja: '最上部へ移動',
+  'zh-CN': '移动到顶部',
+  es: 'Mover al principio'
+});
+
 const buttons = ref<ButtonConfig[]>([]);
 const draggingIndex = ref<number>(0);
 
@@ -75,6 +88,12 @@ const ondrop = (index: number, e: DragEvent) => {
   }
 };
 
+const movetop = (index: number) => {
+  const moveValue = { ...buttons.value[index] };
+  buttons.value.splice(index, 1);
+  buttons.value.unshift(moveValue);
+};
+
 const changeSwitch = (index: number, e: Event) => {
   const target = e.target as HTMLInputElement;
   buttons.value[index].enable = target.checked;
@@ -94,10 +113,19 @@ const save = () => {
   <ul class="buttonList">
     <template v-for="(button, index) in filteredButtons" :key="button.componentName">
       <li :draggable="$store.editing" @dragstart="dragstart(index)" @dragover="dragover" @dragleave="dragleave"
-        @drop="ondrop(index, $event)" :class="{ disable: !button.enable }">
+        @drop="ondrop(index, $event)" :class="{ disable: !button.enable }"
+        :title="$store.editing ? dragHint : undefined">
+
         <img v-if="$store.editing" class="handle" src="/img/drag.svg" alt="drag" />
-        <component :is="ButtonComponents[button.componentName]" :tabindex="index" />
+
+        <button v-if="$store.editing" class="movetop" :title="moveTopHint" @click="movetop(index)">
+          <img src="/img/movetop.svg" alt="move to top" />
+        </button>
+
+        <component :is="ButtonComponents[button.componentName]" :tabindex="index + 1" />
+
         <input v-if="$store.editing" type="checkbox" :checked="button.enable" @change="changeSwitch(index, $event)" />
+
       </li>
     </template>
   </ul>
@@ -112,6 +140,7 @@ const save = () => {
       <img src="/img/setting.svg" alt="icon" />
       {{ i18n.t({ en: "Manage Buttons", ja: "ボタン設定", "zh-CN": "管理按钮", es: "Administrar botones" }) }}
     </button>
+
     <button v-else @click="save()" class="complete">
       <img src="/img/complete.svg" alt="icon" />
       {{ i18n.t({ en: "Complete", ja: "完了", "zh-CN": "完成", es: "Completar" }) }}
@@ -130,20 +159,40 @@ const save = () => {
     background: rgb(var(--color-base));
     margin-top: 4px;
 
-    &.disable {
-      opacity: .5;
-    }
-
-    >img {
-      margin-top: 8px;
-      margin-left: 18px;
+    &.disable :deep(.icon),
+    &.disable :deep(.label) {
       opacity: .4;
-      pointer-events: none;
     }
   }
 
   .handle {
     position: absolute;
+    top: 8px;
+    left: 16px;
+    width: 24px;
+    aspect-ratio: 1;
+    opacity: .2;
+    pointer-events: none;
+  }
+
+  .movetop {
+    position: absolute;
+    top: 8px;
+    left: 44px;
+    width: 24px;
+    padding: 0;
+    border: none;
+    opacity: .8;
+    border-radius: 50%;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    img {
+      width: 24px;
+      aspect-ratio: 1;
+    }
   }
 
   input {
@@ -153,7 +202,7 @@ const save = () => {
     bottom: 14px;
     width: 28px;
     height: 12px;
-    background: rgb(154 160 160 / 0.6);
+    background: rgb(var(--color-main) / .2);
     border-radius: 10px;
     cursor: pointer;
     outline: none;
@@ -169,15 +218,12 @@ const save = () => {
       top: -2px;
       left: -2px;
       width: 16px;
-      height: 16px;
+      aspect-ratio: 1;
       border-radius: 8px;
-      background: rgb(240 240 240);
+      background: rgb(var(--color-base));
+      border: 1px solid rgb(var(--color-main) / .05);
 
-      @media (prefers-color-scheme: dark) {
-        background: rgb(218 220 224);
-      }
-
-      box-shadow: 0 1px 3px rgb(0 0 0 / .4);
+      box-shadow: 0 1px 3px rgb(0 0 0 / .2);
       transition: .2s ease-out;
     }
 
@@ -198,14 +244,14 @@ const save = () => {
   margin: 32px 16px 0;
   justify-content: center;
   line-height: 32px;
-  background: rgb(var(--color-theme));
+  background: rgb(var(--color-theme) / .9);
   color: #fff;
   text-decoration: none;
   border-radius: 6px;
 
   &:hover,
   &:focus {
-    filter: brightness(1.1);
+    background: rgb(var(--color-theme));
   }
 
   img {
