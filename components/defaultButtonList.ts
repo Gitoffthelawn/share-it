@@ -15,6 +15,7 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "Blogger", enable: false },
 	{ componentName: "Gmail", enable: true },
 	{ componentName: "GoogleCalendar", enable: true },
+	{ componentName: "GoogleTranslate", enable: true },
 	{ componentName: "Outlook", enable: false },
 	{ componentName: "AmazonShorter", enable: true },
 	{ componentName: "Messenger", enable: false },
@@ -33,6 +34,7 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "QR", enable: true },
 
 	// For Developers
+	{ componentName: "RaycastNote", enable: false },
 	{ componentName: "Reddit", enable: true },
 	{ componentName: "HackerNews", enable: false },
 	{ componentName: "PageSpeed", enable: true },
@@ -42,6 +44,7 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "WordPress", enable: false },
 
 	// Non major, Local
+	{ componentName: "Raindrop", enable: false },
 	{ componentName: "Buffer", enable: false },
 	{ componentName: "Snapchat", enable: false },
 	{ componentName: "Telegram", enable: false },
@@ -58,4 +61,5 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "VKontakte", enable: false },
 	{ componentName: "Weibo", enable: false },
 	{ componentName: "WhatsApp", enable: false },
+	{ componentName: "Viber", enable: false },
 ];

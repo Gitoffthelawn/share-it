@@ -8,54 +8,54 @@ const url = ref("https://example.com");
 const favIconUrl = ref("https://hira.page/img/meta/favicon.svg");
 
 const getCurrentTab = async () => {
-  const queryOptions = { active: true, currentWindow: true };
-  const [tab] = await browser.tabs.query(queryOptions);
-  return tab;
+	const queryOptions = { active: true, currentWindow: true };
+	const [tab] = await browser.tabs.query(queryOptions);
+	return tab;
 };
 
 const handleKeyNavigation = (event: KeyboardEvent) => {
-  if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
+	if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
 
-  const focusableButtons = Array.from(
-    document.querySelectorAll("button, a"),
-  ).filter((el): el is HTMLElement => {
-    const style = getComputedStyle(el);
-    return style.display !== "none" && style.visibility !== "hidden";
-  });
-  if (focusableButtons.length === 0) return;
+	const focusableButtons = Array.from(
+		document.querySelectorAll("button, a"),
+	).filter((el): el is HTMLElement => {
+		const style = getComputedStyle(el);
+		return style.display !== "none" && style.visibility !== "hidden";
+	});
+	if (focusableButtons.length === 0) return;
 
-  const activeElement = document.activeElement as HTMLElement | null;
-  if (!activeElement || !focusableButtons.includes(activeElement)) {
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      focusableButtons[0].focus();
-    }
-    return;
-  }
+	const activeElement = document.activeElement as HTMLElement | null;
+	if (!activeElement || !focusableButtons.includes(activeElement)) {
+		if (event.key === "ArrowDown") {
+			event.preventDefault();
+			focusableButtons[0].focus();
+		}
+		return;
+	}
 
-  const currentIndex = focusableButtons.indexOf(activeElement);
-  if (currentIndex === -1) return;
+	const currentIndex = focusableButtons.indexOf(activeElement);
+	if (currentIndex === -1) return;
 
-  event.preventDefault();
+	event.preventDefault();
 
-  const nextIndex =
-    event.key === "ArrowDown"
-      ? (currentIndex + 1) % focusableButtons.length
-      : (currentIndex - 1 + focusableButtons.length) % focusableButtons.length;
+	const nextIndex =
+		event.key === "ArrowDown"
+			? (currentIndex + 1) % focusableButtons.length
+			: (currentIndex - 1 + focusableButtons.length) % focusableButtons.length;
 
-  focusableButtons[nextIndex].focus();
+	focusableButtons[nextIndex].focus();
 };
 
 onMounted(() => {
-  getCurrentTab().then((tab) => {
-    $store.tab = tab;
+	getCurrentTab().then((tab) => {
+		$store.tab = tab;
 
-    title.value = tab.title || "";
-    url.value = tab.url || "";
-    favIconUrl.value = tab.favIconUrl || "";
-  });
+		title.value = tab.title || "";
+		url.value = tab.url || "";
+		favIconUrl.value = tab.favIconUrl || "";
+	});
 
-  document.addEventListener("keydown", handleKeyNavigation);
+	document.addEventListener("keydown", handleKeyNavigation);
 });
 </script>
 

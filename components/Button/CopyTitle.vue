@@ -12,7 +12,7 @@ import $store from "@/entrypoints/popup/store";
 import notify from "@/lib/notifiy";
 
 const run = () => {
-	navigator.clipboard.writeText($store.tab?.title);
+	navigator.clipboard.writeText($store.tab?.title || "");
 	notify();
 };
 
@@ -21,5 +21,5 @@ const img = "/img/copy.svg";
 </script>
 
 <template>
-  <VButton :label @click="run()" :img />
+	<VButton :label @click="run()" :img />
 </template>

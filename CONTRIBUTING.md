@@ -1,7 +1,5 @@
 # Share-it Contribution Guide
 
-English | [日本語](CONTRIBUTING.ja.md)
-
 Thank you for visiting. This is a guide on how to contribute to and request features for this Web Extension.
 
 ## Requesting Features

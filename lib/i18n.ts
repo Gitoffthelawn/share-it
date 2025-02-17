@@ -36,7 +36,8 @@ export default {
 			);
 		}
 
-		const userLang = browser.i18n.getUILanguage().toLowerCase();
+		const userLang =
+			browser.i18n.getUILanguage().toLowerCase() || default_locale;
 		return translations[userLang] || translations[default_locale];
 	},
 };
