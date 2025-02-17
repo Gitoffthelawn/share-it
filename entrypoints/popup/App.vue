@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import ButtonList from "@/components/ButtonList.vue";
-import { onMounted, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import $store from "./store";
 
 const title = ref("Example site");
@@ -46,7 +46,7 @@ const handleKeyNavigation = (event: KeyboardEvent) => {
 	focusableButtons[nextIndex].focus();
 };
 
-onMounted(() => {
+onBeforeMount(() => {
 	getCurrentTab().then((tab) => {
 		$store.tab = tab;
 
