@@ -19,7 +19,7 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "Outlook", enable: false },
 	{ componentName: "AmazonShorter", enable: true },
 	{ componentName: "Messenger", enable: false },
-	{ componentName: "Skype", enable: false },
+	// { componentName: "Skype", enable: false },
 
 	// System
 	{ componentName: "CopyLinkAsRichText", enable: true },

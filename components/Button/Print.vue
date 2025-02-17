@@ -10,9 +10,9 @@ const label = {
 // Action
 import $store from "@/entrypoints/popup/store";
 
-const tabId = $store.tab?.id || 0;
-
 const run = () => {
+	const tabId = $store.tab?.id || 0;
+
 	browser.scripting.executeScript({
 		target: { tabId },
 		func: () => {
