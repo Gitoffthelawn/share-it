@@ -9,11 +9,11 @@ const defaultMessage = {
 
 const notify = (message = defaultMessage) => {
 	browser.notifications.create(
+		"",
 		{
 			type: "basic",
 			title: "Share-it",
 			message: i18n.t(message),
-			silent: true,
 			iconUrl: "/icon/128.png",
 		},
 		() => {

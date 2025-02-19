@@ -23,8 +23,8 @@ const run = async () => {
 		await navigator.clipboard.write([clipboardItem]);
 
 		notify();
-	} catch (err) {
-		console.error("Copy Failed:", err);
+	} catch (e) {
+		console.error("Copy Failed:", e);
 	}
 };
 

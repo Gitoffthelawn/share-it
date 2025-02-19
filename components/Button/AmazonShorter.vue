@@ -21,9 +21,6 @@ onMounted(() => {
 
 	domain.value = new URL(url.value).hostname;
 	isAmazon.value = !!domain.value.match(/amazon/);
-
-	console.log(`domain:${domain.value}`);
-	console.log(`isAmazon:${isAmazon.value}`);
 });
 
 const run = () => {

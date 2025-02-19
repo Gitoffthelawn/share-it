@@ -1,9 +1,12 @@
 {
 	"name": "share-it",
 	"author": "Akira HIRATA",
-	"private": true,
-	"version": "2.0.0",
-	"type": "module",
+	"private": false,
+	"version": "3.0.0",
+	"license": "MIT",
+	"engines": {
+		"node": ">=20"
+	},
 	"scripts": {
 		"start": "wxt",
 		"biome": "biome check --write",
@@ -11,6 +14,7 @@
 		"dev:firefox": "wxt -b firefox",
 		"build": "npm run biome && wxt build",
 		"build:firefox": "npm run biome && wxt build -b firefox",
+		"build:safari": "npm run biome && wxt build -b safari && xcrun safari-web-extension-converter .output/safari-mv2",
 		"zip": "npm run biome && wxt zip",
 		"zip:firefox": "npm run biome && wxt zip -b firefox",
 		"compile": "vue-tsc --noEmit",

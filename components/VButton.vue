@@ -18,7 +18,7 @@ defineProps<{
       {{ i18n.t(label) }}
     </span>
 
-    <span v-if="tooltip" class="tooltip" :data-tooltip="tooltip ? i18n.t(tooltip) : undefined">
+    <span v-if="tooltip" class="tooltip" :data-tooltip="tooltip ? i18n.t(tooltip) : undefined" title="">
       <img src="/img/help.svg" alt="help" />
     </span>
   </button>

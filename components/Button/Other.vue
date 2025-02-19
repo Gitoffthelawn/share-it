@@ -18,7 +18,7 @@ onMounted(() => {
 	isSupported.value = true;
 });
 
-const run = () => {
+const run = async () => {
 	if (!navigator.share) {
 		alert("Error: This feature is not supported on your browser.");
 		window.close();
@@ -28,7 +28,11 @@ const run = () => {
 	const title = $store.tab?.title;
 	const url = $store.tab?.url;
 
-	navigator.share({ title, url });
+	try {
+		await navigator.share({ title, url });
+	} catch (e) {
+		if (e instanceof Error) console.error(`Error: ${e.message}`);
+	}
 };
 
 // Image
