@@ -14,7 +14,7 @@
 		"dev:firefox": "wxt -b firefox",
 		"build": "npm run biome && wxt build",
 		"build:firefox": "npm run biome && wxt build -b firefox",
-		"build:safari": "npm run biome && wxt build -b safari && xcrun safari-web-extension-converter .output/safari-mv2",
+		"build:safari": "npm run biome && wxt build -b safari && xcrun safari-web-extension-converter .output/safari-mv2 --project-location .output --force",
 		"zip": "npm run biome && wxt zip",
 		"zip:firefox": "npm run biome && wxt zip -b firefox",
 		"compile": "vue-tsc --noEmit",
