@@ -8,7 +8,7 @@ A browser extension that allows you to share and copy web pages in various ways.
 
 ## Get the Extension
 * [Chrome Web Store](https://chrome.google.com/webstore/detail/share-it/kmfmfcdigkgfhmnopjfdnaikhjkmmplm)
-* [Add-ons for Firefox](https://addons.mozilla.org/ja/developers/addon/share-it/)
+* [Add-ons for Firefox](https://addons.mozilla.org/ja/firefox/addon/share-it/)
 * [Edge Add-ons](TODO)
 
 
