@@ -33,6 +33,16 @@ export const defaultButtonList: ButtonConfig[] = [
 	{ componentName: "Other", enable: true },
 	{ componentName: "QR", enable: true },
 
+	// LLM
+	{ componentName: "ChatGPT", enable: true },
+	{ componentName: "Claude", enable: false },
+	// { componentName: "Gemini", enable: false },
+	//     There is no Query URL for Gemini.
+	//     https://github.com/psephopaiktes/share-it/issues/17
+	{ componentName: "Grok", enable: true },
+	{ componentName: "Copilot", enable: false },
+	{ componentName: "Perplexity", enable: true },
+
 	// For Developers
 	{ componentName: "RaycastNote", enable: false },
 	{ componentName: "Reddit", enable: true },
