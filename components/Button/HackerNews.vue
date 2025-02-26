@@ -1,22 +1,22 @@
 <script lang="ts" setup>
 // Label
 const label = {
-	ja: "Hacker Newsに投稿",
-	en: "Post to Hacker News",
-	"zh-cn": "分享到Hacker News",
-	es: "Compartir en Hacker News",
+  ja: "Hacker Newsに投稿",
+  en: "Post to Hacker News",
+  "zh-cn": "分享到Hacker News",
+  es: "Compartir en Hacker News",
 };
 
 // Action
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
-	const params = new URLSearchParams({
-		t: $store.tab?.title || "",
-		u: $store.tab?.url || "",
-	}).toString();
+  const params = new URLSearchParams({
+    t: $store.tab?.title || "",
+    u: $store.tab?.url || "",
+  }).toString();
 
-	window.open(`https://news.ycombinator.com/submitlink?${params}`);
+  window.open(`https://news.ycombinator.com/submitlink?${params}`);
 };
 
 // Image
@@ -24,5 +24,5 @@ const img = "/img/hackernews.svg";
 </script>
 
 <template>
-  <VButton :label @click="run()" :img />
+	<VButton :label @click="run()" :img />
 </template>

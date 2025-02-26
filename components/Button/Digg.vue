@@ -1,21 +1,21 @@
 <script lang="ts" setup>
 // Label
 const label = {
-	ja: "Diggに共有",
-	en: "Share on Digg",
-	"zh-cn": "分享到Digg",
-	es: "Compartir en Digg",
+  ja: "Diggに共有",
+  en: "Share on Digg",
+  "zh-cn": "分享到Digg",
+  es: "Compartir en Digg",
 };
 
 // Action
 import $store from "@/entrypoints/popup/store";
 
 const run = () => {
-	const params = new URLSearchParams({
-		url: $store.tab?.url || "",
-	}).toString();
+  const params = new URLSearchParams({
+    url: $store.tab?.url || "",
+  }).toString();
 
-	window.open(`https://digg.com/submit?${params}`);
+  window.open(`https://digg.com/submit?${params}`);
 };
 
 // Image
@@ -23,5 +23,5 @@ const img = "/img/digg.svg";
 </script>
 
 <template>
-  <VButton :img :label @click="run()" darkLogo />
+	<VButton :img :label @click="run()" darkLogo />
 </template>

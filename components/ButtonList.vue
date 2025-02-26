@@ -5,22 +5,22 @@ import { type Component, computed, onMounted, ref } from "vue";
 import { type ButtonConfig, defaultButtonList } from "./defaultButtonList";
 
 const moveTopHint = i18n.t({
-	en: "Move to top",
-	ja: "最上部へ移動",
-	"zh-cn": "移动到顶部",
-	es: "Mover al principio",
+  en: "Move to top",
+  ja: "最上部へ移動",
+  "zh-cn": "移动到顶部",
+  es: "Mover al principio",
 });
 const dragHint = i18n.t({
-	en: "Drag to reorder",
-	ja: "並び替えるにはドラッグしてください",
-	"zh-cn": "拖动以重新排序",
-	es: "Arrastra para reordenar",
+  en: "Drag to reorder",
+  ja: "並び替えるにはドラッグしてください",
+  "zh-cn": "拖动以重新排序",
+  es: "Arrastra para reordenar",
 });
 const switchHint = i18n.t({
-	ja: "有効/無効を切り替え",
-	en: "Enable/Disable",
-	"zh-cn": "启用/禁用",
-	es: "Activar/Desactivar",
+  ja: "有効/無効を切り替え",
+  en: "Enable/Disable",
+  "zh-cn": "启用/禁用",
+  es: "Activar/Desactivar",
 });
 
 const buttons = ref<ButtonConfig[]>([]);
@@ -28,98 +28,98 @@ const draggingIndex = ref<number>(0);
 
 // import all .vue files in the component/Button
 const modules = import.meta.glob("./Button/*.vue", { eager: true }) as Record<
-	string,
-	{ default: Component }
+  string,
+  { default: Component }
 >;
 const ButtonComponents: Record<string, Component> = Object.fromEntries(
-	Object.entries(modules).map(([path, module]) => {
-		if (!module?.default) {
-			throw new Error(`Failed to load component: ${path}`);
-		}
-		const match = path.match(/\.\/Button\/(.*)\.vue$/);
-		if (!match) {
-			throw new Error(`Invalid component path: ${path}`);
-		}
-		const name = match[1];
-		return [name, module.default];
-	}),
+  Object.entries(modules).map(([path, module]) => {
+    if (!module?.default) {
+      throw new Error(`Failed to load component: ${path}`);
+    }
+    const match = path.match(/\.\/Button\/(.*)\.vue$/);
+    if (!match) {
+      throw new Error(`Invalid component path: ${path}`);
+    }
+    const name = match[1];
+    return [name, module.default];
+  }),
 );
 
 const filteredButtons = computed(() =>
-	$store.editing
-		? buttons.value
-		: buttons.value.filter((button) => button.enable),
+  $store.editing
+    ? buttons.value
+    : buttons.value.filter((button) => button.enable),
 );
 
 onMounted(async () => {
-	try {
-		const data = await browser.storage.sync.get("options");
-		const userButtons: ButtonConfig[] = data.options?.buttons || [];
+  try {
+    const data = await browser.storage.sync.get("options");
+    const userButtons: ButtonConfig[] = data.options?.buttons || [];
 
-		// Add newly added buttons to the end
-		const newButtons = defaultButtonList.filter(
-			(defaultButton) =>
-				!userButtons.some(
-					(browserButton) =>
-						browserButton.componentName === defaultButton.componentName,
-				),
-		);
+    // Add newly added buttons to the end
+    const newButtons = defaultButtonList.filter(
+      (defaultButton) =>
+        !userButtons.some(
+          (browserButton) =>
+            browserButton.componentName === defaultButton.componentName,
+        ),
+    );
 
-		// Exclude removed buttons
-		buttons.value = [...userButtons, ...newButtons].filter((button) =>
-			defaultButtonList.some(
-				(defaultButton) => defaultButton.componentName === button.componentName,
-			),
-		);
-	} catch (e) {
-		console.error("Failed to retrieve options from storage:", e);
-		buttons.value = [...defaultButtonList];
-	}
+    // Exclude removed buttons
+    buttons.value = [...userButtons, ...newButtons].filter((button) =>
+      defaultButtonList.some(
+        (defaultButton) => defaultButton.componentName === button.componentName,
+      ),
+    );
+  } catch (e) {
+    console.error("Failed to retrieve options from storage:", e);
+    buttons.value = [...defaultButtonList];
+  }
 });
 
 const dragstart = (index: number) => {
-	draggingIndex.value = index;
+  draggingIndex.value = index;
 };
 const dragover = (e: DragEvent) => {
-	e.preventDefault();
-	(e.target as HTMLElement).style.borderTop =
-		"4px solid rgb(var(--color-theme) / 0.2)";
+  e.preventDefault();
+  (e.target as HTMLElement).style.borderTop =
+    "4px solid rgb(var(--color-theme) / 0.2)";
 };
 const dragleave = (e: DragEvent) => {
-	(e.target as HTMLElement).style.borderTop = "";
+  (e.target as HTMLElement).style.borderTop = "";
 };
 const ondrop = (index: number, e: DragEvent) => {
-	(e.target as HTMLElement).style.borderTop = "";
-	if (index === draggingIndex.value) return;
+  (e.target as HTMLElement).style.borderTop = "";
+  if (index === draggingIndex.value) return;
 
-	const moveValue = { ...buttons.value[draggingIndex.value] };
-	buttons.value.splice(draggingIndex.value, 1);
+  const moveValue = { ...buttons.value[draggingIndex.value] };
+  buttons.value.splice(draggingIndex.value, 1);
 
-	if (draggingIndex.value < index) {
-		buttons.value.splice(index - 1, 0, moveValue);
-	} else {
-		buttons.value.splice(index, 0, moveValue);
-	}
+  if (draggingIndex.value < index) {
+    buttons.value.splice(index - 1, 0, moveValue);
+  } else {
+    buttons.value.splice(index, 0, moveValue);
+  }
 };
 
 const movetop = (index: number) => {
-	const moveValue = { ...buttons.value[index] };
-	buttons.value.splice(index, 1);
-	buttons.value.unshift(moveValue);
+  const moveValue = { ...buttons.value[index] };
+  buttons.value.splice(index, 1);
+  buttons.value.unshift(moveValue);
 };
 
 const changeSwitch = (index: number, e: Event) => {
-	const target = e.target as HTMLInputElement;
-	buttons.value[index].enable = target.checked;
+  const target = e.target as HTMLInputElement;
+  buttons.value[index].enable = target.checked;
 };
 
 const save = () => {
-	$store.editing = !$store.editing;
-	browser.storage.sync.set({
-		options: {
-			buttons: [...buttons.value],
-		},
-	});
+  $store.editing = !$store.editing;
+  browser.storage.sync.set({
+    options: {
+      buttons: [...buttons.value],
+    },
+  });
 };
 </script>
 

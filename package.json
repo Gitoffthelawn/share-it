@@ -1,34 +1,34 @@
 {
-	"name": "share-it",
-	"author": "Akira HIRATA",
-	"private": false,
-	"version": "3.1.0",
-	"license": "MIT",
-	"engines": {
-		"node": ">=20"
-	},
-	"scripts": {
-		"start": "wxt",
-		"biome": "biome check --write",
-		"dev": "wxt",
-		"dev:firefox": "wxt -b firefox",
-		"build": "npm run biome && wxt build",
-		"build:firefox": "npm run biome && wxt build -b firefox",
-		"build:safari": "npm run biome && wxt build -b safari && xcrun safari-web-extension-converter .output/safari-mv2 --project-location .output --force",
-		"zip": "npm run biome && wxt zip",
-		"zip:firefox": "npm run biome && wxt zip -b firefox",
-		"compile": "vue-tsc --noEmit",
-		"postinstall": "wxt prepare"
-	},
-	"dependencies": {
-		"vue": "^3.5.12"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@types/chrome": "^0.0.280",
-		"@wxt-dev/module-vue": "^1.0.1",
-		"typescript": "5.6.3",
-		"vue-tsc": "^2.1.10",
-		"wxt": "^0.19.13"
-	}
+  "name": "share-it",
+  "author": "Akira HIRATA",
+  "private": false,
+  "version": "3.1.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "wxt",
+    "biome": "biome check --write",
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "npm run biome && wxt build",
+    "build:firefox": "npm run biome && wxt build -b firefox",
+    "build:safari": "npm run biome && wxt build -b safari && xcrun safari-web-extension-converter .output/safari-mv2 --project-location .output --force",
+    "zip": "npm run biome && wxt zip",
+    "zip:firefox": "npm run biome && wxt zip -b firefox",
+    "compile": "vue-tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/chrome": "^0.0.280",
+    "@wxt-dev/module-vue": "^1.0.1",
+    "typescript": "5.6.3",
+    "vue-tsc": "^2.1.10",
+    "wxt": "^0.19.13"
+  }
 }

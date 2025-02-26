@@ -3,10 +3,10 @@ import $store from "@/entrypoints/popup/store";
 import i18n from "@/lib/i18n";
 
 defineProps<{
-	label: Record<string, string>;
-	img: string;
-	darkLogo?: boolean;
-	tooltip?: Record<string, string>;
+  label: Record<string, string>;
+  img: string;
+  darkLogo?: boolean;
+  tooltip?: Record<string, string>;
 }>();
 </script>
 

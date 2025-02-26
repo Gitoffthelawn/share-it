@@ -1,14 +1,14 @@
 {
-	"locale": {
-		"message": "es"
-	},
-	"extName": {
-		"message": "Share-it"
-	},
-	"extDescription": {
-		"message": "Comparte o copia páginas web a cualquier lugar en varios formatos."
-	},
-	"popupTitle": {
-		"message": "Comparte esta página"
-	}
+  "locale": {
+    "message": "es"
+  },
+  "extName": {
+    "message": "Share-it"
+  },
+  "extDescription": {
+    "message": "Comparte o copia páginas web a cualquier lugar en varios formatos."
+  },
+  "popupTitle": {
+    "message": "Comparte esta página"
+  }
 }
